@@ -30,9 +30,9 @@
 
 ・設定
 
-```python
+```json
 (ex)[/]
-A:admin@r1# **admin show configuration /configure card 1**
+A:admin@r1# admin show configuration /configure card 1
     card-type i24-800g-qsfpdd-1
     level he2800g+
     mda 1 {
