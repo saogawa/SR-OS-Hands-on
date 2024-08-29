@@ -30,7 +30,7 @@
 
 ・設定
 
-```yaml
+```bash
 (ex)[/]
 A:admin@r1# admin show configuration /configure card 1
     card-type i24-800g-qsfpdd-1
