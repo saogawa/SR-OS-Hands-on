@@ -1429,7 +1429,7 @@ Flags: n = Number of times nexthop is repeated
 ・確認
 
 ```bash
-root@pod5-KVM:/home/clab/sros-hands-on# /home/clab/sros-hands-on/traffic.sh start internet
+root@pod5-KVM:/home/clab/sros-hands-on# sudo /home/clab/pod1/traffic.sh start internet
 Starting non-gamer traffic to internet
 Connecting to host 10.0.2.10, port 5201
 ```
@@ -1479,7 +1479,7 @@ Utilization (% of port capacity)                   ~0.00                   0.00
 ```
 
 ```bash
-root@pod5-KVM:/home/clab/sros-hands-on# /home/clab/sros-hands-on/traffic.sh stop internet
+root@pod5-KVM:/home/clab/sros-hands-on# sudo /home/clab/pod1/traffic.sh stop internet
 Stopping traffic
 ```
 
@@ -1490,7 +1490,7 @@ Stopping traffic
 ・確認
 
 ```bash
-root@pod5-KVM:/home/clab/sros-hands-on# /home/clab/sros-hands-on/traffic.sh start gamer
+root@pod5-KVM:/home/clab/sros-hands-on# sudo /home/clab/pod1/traffic.sh start gamer
 Starting gamer traffic
 Connecting to host 20.0.2.10, port 5202
 ```
@@ -1540,7 +1540,7 @@ Utilization (% of port capacity)                    0.00                   0.00
 ```
 
 ```bash
-root@pod5-KVM:/home/clab/sros-hands-on# /home/clab/sros-hands-on/traffic.sh stop gamer
+root@pod5-KVM:/home/clab/sros-hands-on# sudo /home/clab/pod1/traffic.sh stop gamer
 Stopping traffic
 ```
 
@@ -1584,7 +1584,7 @@ A:admin@r3# admin show configuration /configure router interface "to_R5"
 ・設定
 
 ```bash
-root@pod5-KVM:/home/clab/sros-hands-on# /home/clab/sros-hands-on/traffic.sh start internet
+root@pod5-KVM:/home/clab/sros-hands-on# sudo /home/clab/pod1/traffic.sh start internet
 Starting non-gamer traffic to internet
 Connecting to host 10.0.2.10, port 5201
 ```
@@ -1633,7 +1633,7 @@ Utilization (% of port capacity)                    0.00                  ~0.00
 ```
 
 ```bash
-root@pod5-KVM:/home/clab/sros-hands-on# /home/clab/sros-hands-on/traffic.sh stop internet
+root@pod5-KVM:/home/clab/sros-hands-on# sudo /home/clab/pod1/traffic.sh stop internet
 Stopping traffic
 ```
 
@@ -1644,7 +1644,7 @@ Stopping traffic
 ・設定
 
 ```bash
-root@pod1-KVM:/home/clab/sros-hands-on# /home/clab/sros-hands-on/traffic.sh start gamer
+root@pod1-KVM:/home/clab/sros-hands-on# sudo /home/clab/pod1/traffic.sh start gamer
 Starting gamer traffic
 Connecting to host 20.0.2.10, port 5202
 ```
@@ -1693,6 +1693,6 @@ Utilization (% of port capacity)                   ~0.00                  ~0.00
 ```
 
 ```bash
-root@pod5-KVM:/home/clab/sros-hands-on# /home/clab/sros-hands-on/traffic.sh stop gamer
+root@pod5-KVM:/home/clab/sros-hands-on# sudo /home/clab/pod1/traffic.sh stop gamer
 Stopping traffic
 ```
