@@ -15,11 +15,11 @@
   - [コア網側ISIS-SR設定](#コア網側ISIS-SR設定)
   - [コア網側iBGP設定](#コア網側iBGP設定)
   - [CE網側VPRN設定](#CE網側VPRN設定)
-  - [疎通確認 internet delayメトリック変更前](#疎通確認 internet delayメトリック変更前)
-  - [疎通確認 gamer delayメトリック変更前](#疎通確認 gamer delayメトリック変更前)
-  - [コア網側 R3-R5 delayメトリックの変更](#コア網側 R3-R5 delayメトリックの変更)
-  - [疎通確認 internet delayメトリック変更後](#疎通確認 internet delayメトリック変更後)
-  - [疎通確認 gamer delayメトリック変更後](#疎通確認 gamer delayメトリック変更後)
+  - [疎通確認 internet delayメトリック変更前](#疎通確認_internet_delayメトリック変更前)
+  - [疎通確認 gamer delayメトリック変更前](#疎通確認_gamer_delayメトリック変更前)
+  - [コア網側 R3-R5 delayメトリックの変更](#コア網側_R3-R5_delayメトリックの変更)
+  - [疎通確認 internet delayメトリック変更後](#疎通確認_internet_delayメトリック変更後)
+  - [疎通確認 gamer delayメトリック変更後](#疎通確認_gamer_delayメトリック変更後)
 
 # 1. 初期設定
 
