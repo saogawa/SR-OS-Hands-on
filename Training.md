@@ -968,6 +968,18 @@ Flags: n = Number of times nexthop is repeated
 ・設定
 
 ```bash
+[/show router isis segment-routing-v6]
+A:admin@r1# admin show configuration /configure routing-options
+    flexible-algorithm-definitions {
+        flex-algo "Flex-Algo-128" {
+            admin-state enable
+            description "Flex-Algo for Delay Metric"
+            metric-type delay
+        }
+    }
+```
+
+```bash
 [/]
 A:admin@r1# admin show configuration /configure router "Base" isis
     flexible-algorithms {
@@ -1000,6 +1012,9 @@ A:admin@r1# admin show configuration /configure router "Base" isis
 ```
 
 ```bash
+    /configure routing-options flexible-algorithm-definitions flex-algo "Flex-Algo-128" admin-state enable
+    /configure routing-options flexible-algorithm-definitions flex-algo "Flex-Algo-128" description "Flex-Algo for Delay Metric"
+    /configure routing-options flexible-algorithm-definitions flex-algo "Flex-Algo-128" metric-type delay
     /configure router "Base" isis 0 interface "system" ipv4-node-sid index 1
     /configure router "Base" isis 0 interface "system" flex-algo 128 ipv4-node-sid index 11    
     /configure router "Base" isis 0 traffic-engineering false
