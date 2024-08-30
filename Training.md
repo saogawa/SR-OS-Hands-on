@@ -1165,31 +1165,6 @@ Sid count : 2
 ===============================================================================
 ```
 
-```bash
-[/]
-A:admin@r1# show router "Base" isis sid-stats adj
-
-===============================================================================
-Rtr Base ISIS Instance 0 Sid Statistics
-===============================================================================
-Ingress Label     : 524284              Type              : adjacency
-Prefix            : 192.168.14.1/32
-Interface         : to_R4
-Ingress Oper State: disabled            Egress Oper State : disabled
-Ingress Octets    : 0                   Egress Octets     : 0
-Ingress Packets   : 0                   Egress Packets    : 0
-
-Ingress Label     : 524285              Type              : adjacency
-Prefix            : 192.168.13.1/32
-Interface         : to_R3
-Ingress Oper State: disabled            Egress Oper State : disabled
-Ingress Octets    : 0                   Egress Octets     : 0
-Ingress Packets   : 0                   Egress Packets    : 0
-
--------------------------------------------------------------------------------
-Sid count : 2
-===============================================================================
-```
 
 ## コア網側 :  iBGP設定
 
