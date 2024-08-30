@@ -10,17 +10,16 @@
   - [systemループバック](#systemループバック)
 - [2. 応用編](#2-応用編)
   - [物理ポート設定](#物理ポート設定)
-  - [コア網側 : インターフェース設定](#コア網側--インターフェース設定)
-  - [コア網側 : ISIS設定](#コア網側--isis設定)
-  - [コア網側 : ISIS-SR(Segment-Routing)設定](#コア網側--isis-srsegment-routing設定)
-  - [コア網側 : iBGP設定](#コア網側--ibgp設定)
-  - [CE網側 : VPRN設定](#ce網側--vprn設定)
-  - [疎通確認 (internet) : delayメトリック変更前](#疎通確認-internet--delayメトリック変更前)
-  - [疎通確認(gamer) : delayメトリック変更前](#疎通確認gamer--delayメトリック変更前)
-  - [Flex-Algo 設定](#flex-algo-設定)
-  - [疎通確認 (internet) : delayメトリック変更後](#疎通確認-internet--delayメトリック変更後)
-  - [疎通確認(gamer) : delayメトリック変更後](#疎通確認gamer--delayメトリック変更後)
-  - [コア網側 : delayメトリックの変更](#コア網側--delayメトリックの変更)
+  - [コア網側インターフェース設定](#コア網側インターフェース設定)
+  - [コア網側ISIS設定](#コア網側ISIS設定)
+  - [コア網側ISIS-SR設定](#コア網側ISIS-SR設定)
+  - [コア網側iBGP設定](#コア網側iBGP設定)
+  - [CE網側VPRN設定](#CE網側VPRN設定)
+  - [疎通確認 internet delayメトリック変更前](#疎通確認 internet delayメトリック変更前)
+  - [疎通確認 gamer delayメトリック変更前](#疎通確認 gamer delayメトリック変更前)
+  - [コア網側 R3-R5 delayメトリックの変更](#コア網側 R3-R5 delayメトリックの変更)
+  - [疎通確認 internet delayメトリック変更後](#疎通確認 internet delayメトリック変更後)
+  - [疎通確認 gamer delayメトリック変更後](#疎通確認 gamer delayメトリック変更後)
 
 # 1. 初期設定
 
@@ -714,7 +713,7 @@ Id            State      State   MTU  MTU  Bndl Mode Encp Type   MDIMDX
 
 ```
 
-## コア網側 :  インターフェース設定
+## コア網側インターフェース設定
 
 ---
 
@@ -811,7 +810,7 @@ Interfaces : 3
 ===============================================================================
 ```
 
-## コア網側 :  ISIS設定
+## コア網側ISIS設定
 
 ---
 
@@ -961,7 +960,7 @@ Flags: n = Number of times nexthop is repeated
 ===============================================================================
 ```
 
-## コア網側 :  ISIS-SR(Segment-Routing)設定
+## コア網側 : コア網側ISIS-SR設定
 
 ---
 
@@ -1166,7 +1165,7 @@ Sid count : 2
 ```
 
 
-## コア網側 :  iBGP設定
+## コア網側iBGP設定
 
 ---
 
@@ -1246,7 +1245,7 @@ Routes : 2
 ===============================================================================
 ```
 
-## CE網側 :  VPRN設定
+## CE網側VPRN設定
 
 ---
 
@@ -1423,7 +1422,7 @@ Flags: n = Number of times nexthop is repeated
 ===============================================================================
 ```
 
-## 疎通確認 (internet)  : delayメトリック変更前
+## 疎通確認 internet delayメトリック変更前
 
 ---
 
@@ -1484,7 +1483,7 @@ root@pod5-KVM:/home/clab/sros-hands-on# /home/clab/sros-hands-on/traffic.sh stop
 Stopping traffic
 ```
 
-## 疎通確認(gamer) : delayメトリック変更前
+## 疎通確認 gamer delayメトリック変更前
 
 ---
 
@@ -1545,7 +1544,7 @@ root@pod5-KVM:/home/clab/sros-hands-on# /home/clab/sros-hands-on/traffic.sh stop
 Stopping traffic
 ```
 
-## コア網側 :  delayメトリックの変更
+## コア網側 R3-R5 delayメトリックの変更
 
 ---
 
@@ -1578,7 +1577,7 @@ A:admin@r3# admin show configuration /configure router interface "to_R5"
     /configure router "Base" interface "to_R5" if-attribute delay static 50000
 ```
 
-## 疎通確認(internet) : delayメトリック変更後
+## 疎通確認 internet delayメトリック変更後
 
 ---
 
@@ -1638,7 +1637,7 @@ root@pod5-KVM:/home/clab/sros-hands-on# /home/clab/sros-hands-on/traffic.sh stop
 Stopping traffic
 ```
 
-## 疎通確認(gamer) : delayメトリック変更後
+## 疎通確認 gamer delayメトリック変更後
 
 ---
 
