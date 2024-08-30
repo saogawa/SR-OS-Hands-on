@@ -1123,6 +1123,53 @@ Routes : 2
 ・設定
 
 ```bash
+(gl)[/]
+A:admin@r1# admin show configuration /configure policy-options
+    community "customer1-export" {
+        member "target:65000:1" { }
+    }
+    community "customer1-import" {
+        member "target:65000:1" { }
+    }
+    prefix-list "gaming" {
+        prefix 20.0.2.0/24 type exact {
+        }
+    }
+    prefix-list "internet" {
+        prefix 10.0.2.0/24 type exact {
+        }
+    }
+    policy-statement "customer1-import" {
+        entry 10 {
+            from {
+                prefix-list ["internet"]
+                community {
+                    name "customer1-import"
+                }
+            }
+            action {
+                action-type accept
+            }
+        }
+        entry 20 {
+            from {
+                prefix-list ["gaming"]
+                community {
+                    name "customer1-import"
+                }
+            }
+            action {
+                action-type accept
+                flex-algo 128
+            }
+        }
+        default-action {
+            action-type reject
+        }
+    }
+```
+
+```bash
 *(ex)[/]
 A:admin@r1# admin show configuration /configure service vprn "customer1"
     admin-state enable
@@ -1170,6 +1217,18 @@ A:admin@r1# admin show configuration /configure service vprn "customer1"
 ```
 
 ```bash
+    /configure policy-options community "customer1-export" { member "target:65000:1" }
+    /configure policy-options community "customer1-import" { member "target:65000:1" }
+    /configure policy-options prefix-list "gaming" { prefix 20.0.2.0/24 type exact }
+    /configure policy-options prefix-list "internet" { prefix 10.0.2.0/24 type exact }
+    /configure policy-options policy-statement "customer1-import" entry 10 from prefix-list ["internet"]
+    /configure policy-options policy-statement "customer1-import" entry 10 from community name "customer1-import"
+    /configure policy-options policy-statement "customer1-import" entry 10 action action-type accept
+    /configure policy-options policy-statement "customer1-import" entry 20 from prefix-list ["gaming"]
+    /configure policy-options policy-statement "customer1-import" entry 20 from community name "customer1-import"
+    /configure policy-options policy-statement "customer1-import" entry 20 action action-type accept
+    /configure policy-options policy-statement "customer1-import" entry 20 action flex-algo 128
+    /configure policy-options policy-statement "customer1-import" default-action action-type reject
     /configure service vprn "customer1" admin-state enable
     /configure service vprn "customer1" service-id 1
     /configure service vprn "customer1" customer "1"
