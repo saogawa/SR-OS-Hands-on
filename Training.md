@@ -332,7 +332,7 @@ A:admin@r1# admin show configuration /configure system security user-params
 ```
 
 ```bash
-    /configure system security user-params local-user user "guest" password "guest"
+    /configure system security user-params local-user user "guest" password admin123
     /configure system security user-params local-user user "guest" restricted-to-home false
     /configure system security user-params local-user user "guest" access console true
     /configure system security user-params local-user user "guest" access ftp true
