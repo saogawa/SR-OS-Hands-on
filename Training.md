@@ -1496,6 +1496,9 @@ A:admin@r1# admin show configuration /configure service vprn "customer1"
 ```
 
 ```bash
+    /configure routing-options flexible-algorithm-definitions flex-algo "Flex-Algo-128" admin-state enable
+    /configure routing-options flexible-algorithm-definitions flex-algo "Flex-Algo-128" description "Flex-Algo for Delay Metric"
+    /configure routing-options flexible-algorithm-definitions flex-algo "Flex-Algo-128" metric-type delay
     /configure service vprn "customer1" admin-state enable
     /configure service vprn "customer1" service-id 1
     /configure service vprn "customer1" customer "1"
