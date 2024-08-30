@@ -1422,7 +1422,7 @@ Flags: n = Number of times nexthop is repeated
 ===============================================================================
 ```
 
-## 疎通確認 internet delayメトリック変更前
+## 疎通確認_internet_delayメトリック変更前
 
 ---
 
@@ -1483,7 +1483,7 @@ root@pod5-KVM:/home/clab/sros-hands-on# /home/clab/sros-hands-on/traffic.sh stop
 Stopping traffic
 ```
 
-## 疎通確認 gamer delayメトリック変更前
+## 疎通確認_gamer_delayメトリック変更前
 
 ---
 
@@ -1544,7 +1544,7 @@ root@pod5-KVM:/home/clab/sros-hands-on# /home/clab/sros-hands-on/traffic.sh stop
 Stopping traffic
 ```
 
-## コア網側 R3-R5 delayメトリックの変更
+## コア網側_R3-R5_delayメトリックの変更
 
 ---
 
@@ -1577,7 +1577,7 @@ A:admin@r3# admin show configuration /configure router interface "to_R5"
     /configure router "Base" interface "to_R5" if-attribute delay static 50000
 ```
 
-## 疎通確認 internet delayメトリック変更後
+## 疎通確認_internet_delayメトリック変更後
 
 ---
 
@@ -1637,7 +1637,7 @@ root@pod5-KVM:/home/clab/sros-hands-on# /home/clab/sros-hands-on/traffic.sh stop
 Stopping traffic
 ```
 
-## 疎通確認 gamer delayメトリック変更後
+## 疎通確認_gamer_delayメトリック変更後
 
 ---
 
