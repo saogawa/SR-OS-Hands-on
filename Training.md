@@ -981,32 +981,101 @@ A:admin@r1# admin show configuration /configure routing-options
 
 ```bash
 [/]
-A:admin@r1# admin show configuration /configure router "Base" isis
-    flexible-algorithms {
-        admin-state enable
-        flex-algo 128 {
-            participate true
-            advertise "Flex-Algo-128"
-        }
-    }
-    traffic-engineering-options {
-        application-link-attributes {
-        }
-    }
-    segment-routing {
-        admin-state enable
-        prefix-sid-range {
-            global
-        }
-    }
+A:admin@r1# admin show configuration /configure router 
+    autonomous-system 65000
     interface "system" {
-        ipv4-node-sid {
-            index 1
-        }
-        flex-algo 128 {
-            ipv4-node-sid {
-                index 11
+        ipv4 {
+            primary {
+                address 192.0.2.1
+                prefix-length 32
             }
+        }
+        ipv6 {
+            address 192:2::1 {
+                prefix-length 128
+            }
+        }
+    }
+    interface "to_R3" {
+        admin-state enable
+        port 1/1/c2/1:0
+        ipv4 {
+            primary {
+                address 192.168.13.0
+                prefix-length 31
+            }
+        }
+        if-attribute {
+            delay {
+                static 10000
+            }
+        }
+    }
+    interface "to_R4" {
+        admin-state enable
+        port 1/1/c3/1:0
+        ipv4 {
+            primary {
+                address 192.168.14.0
+                prefix-length 31
+            }
+        }
+        if-attribute {
+            delay {
+                static 10000
+            }
+        }
+    }
+    mpls-labels {
+        sr-labels {
+            start 100000
+            end 100999
+        }
+    }
+    isis 0 {
+        admin-state enable
+        advertise-router-capability as
+        level-capability 2
+        traffic-engineering false
+        flexible-algorithms {
+            admin-state enable
+            flex-algo 128 {
+                participate true
+                advertise "Flex-Algo-128"
+            }
+        }
+        traffic-engineering-options {
+            application-link-attributes {
+            }
+        }
+        segment-routing {
+            admin-state enable
+            prefix-sid-range {
+                global
+            }
+        }
+        interface "system" {
+            ipv4-node-sid {
+                index 1
+            }
+            flex-algo 128 {
+                ipv4-node-sid {
+                    index 11
+                }
+            }
+        }
+        interface "to_R3" {
+            interface-type point-to-point
+            level 1 {
+            }
+        }
+        interface "to_R4" {
+            interface-type point-to-point
+            level 1 {
+            }
+        }
+        level 2 {
+            wide-metrics-only true
         }
     }
 ```
@@ -1015,15 +1084,39 @@ A:admin@r1# admin show configuration /configure router "Base" isis
     /configure routing-options flexible-algorithm-definitions flex-algo "Flex-Algo-128" admin-state enable
     /configure routing-options flexible-algorithm-definitions flex-algo "Flex-Algo-128" description "Flex-Algo for Delay Metric"
     /configure routing-options flexible-algorithm-definitions flex-algo "Flex-Algo-128" metric-type delay
-    /configure router "Base" isis 0 interface "system" ipv4-node-sid index 1
-    /configure router "Base" isis 0 interface "system" flex-algo 128 ipv4-node-sid index 11    
+    /configure router "Base" autonomous-system 65000
+    /configure router "Base" interface "system" ipv4 primary address 192.0.2.1
+    /configure router "Base" interface "system" ipv4 primary prefix-length 32
+    /configure router "Base" interface "system" ipv6 address 192:2::1 prefix-length 128
+    /configure router "Base" interface "to_R3" admin-state enable
+    /configure router "Base" interface "to_R3" port 1/1/c2/1:0
+    /configure router "Base" interface "to_R3" ipv4 primary address 192.168.13.0
+    /configure router "Base" interface "to_R3" ipv4 primary prefix-length 31
+    /configure router "Base" interface "to_R3" if-attribute delay static 10000
+    /configure router "Base" interface "to_R4" admin-state enable
+    /configure router "Base" interface "to_R4" port 1/1/c3/1:0
+    /configure router "Base" interface "to_R4" ipv4 primary address 192.168.14.0
+    /configure router "Base" interface "to_R4" ipv4 primary prefix-length 31
+    /configure router "Base" interface "to_R4" if-attribute delay static 10000
+    /configure router "Base" mpls-labels sr-labels start 100000
+    /configure router "Base" mpls-labels sr-labels end 100999
+    /configure router "Base" isis 0 admin-state enable
+    /configure router "Base" isis 0 advertise-router-capability as
+    /configure router "Base" isis 0 level-capability 2
     /configure router "Base" isis 0 traffic-engineering false
     /configure router "Base" isis 0 flexible-algorithms admin-state enable
     /configure router "Base" isis 0 flexible-algorithms flex-algo 128 participate true
     /configure router "Base" isis 0 flexible-algorithms flex-algo 128 advertise "Flex-Algo-128"
-    /configure router "Base" isis 0 traffic-engineering-options { application-link-attributes }
+    /configure router "Base" isis 0 { traffic-engineering-options application-link-attributes }
     /configure router "Base" isis 0 segment-routing admin-state enable
     /configure router "Base" isis 0 segment-routing prefix-sid-range global
+    /configure router "Base" isis 0 interface "system" ipv4-node-sid index 1
+    /configure router "Base" isis 0 interface "system" flex-algo 128 ipv4-node-sid index 11
+    /configure router "Base" isis 0 interface "to_R3" interface-type point-to-point
+    /configure router "Base" isis 0 { interface "to_R3" level 1 }
+    /configure router "Base" isis 0 interface "to_R4" interface-type point-to-point
+    /configure router "Base" isis 0 { interface "to_R4" level 1 }
+    /configure router "Base" isis 0 level 2 wide-metrics-only true
 ```
 
 ・確認
