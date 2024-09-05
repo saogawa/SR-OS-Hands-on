@@ -915,6 +915,8 @@ configure {
             traffic-engineering false
             area-address [49.0001]
             interface "system" {
+                level 1 {
+                }
             }
             interface "to_R3" {
                 interface-type point-to-point
@@ -940,7 +942,17 @@ configure {
 <summary>フラットコンフィグ</summary>
 
 ```bash
-
+    /configure router "Base" isis 0 admin-state enable
+    /configure router "Base" isis 0 advertise-router-capability as
+    /configure router "Base" isis 0 level-capability 2
+    /configure router "Base" isis 0 traffic-engineering false
+    /configure router "Base" isis 0 area-address [49.0001]
+    /configure router "Base" isis 0 interface "system" { level 1}
+    /configure router "Base" isis 0 interface "to_R3" interface-type point-to-point
+    /configure router "Base" isis 0 interface "to_R3" { level 1 }
+    /configure router "Base" isis 0 interface "to_R4" interface-type point-to-point
+    /configure router "Base" isis 0 interface "to_R4" { level 1 }
+    /configure router "Base" isis 0 level 2 wide-metrics-only true
 ```
 
 </details>
