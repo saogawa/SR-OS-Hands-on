@@ -1101,7 +1101,19 @@ configure {
 <summary>フラットコンフィグ</summary>
 
 ```bash
-
+    /configure router "Base" mpls-labels sr-labels start 100000
+    /configure router "Base" mpls-labels sr-labels end 100999
+    /configure router "Base" isis 0 flexible-algorithms admin-state enable
+    /configure router "Base" isis 0 flexible-algorithms flex-algo 128 participate true
+    /configure router "Base" isis 0 flexible-algorithms flex-algo 128 advertise "Flex-Algo-128"
+    /configure router "Base" isis 0 { traffic-engineering-options application-link-attributes }
+    /configure router "Base" isis 0 segment-routing admin-state enable
+    /configure router "Base" isis 0 segment-routing prefix-sid-range global
+    /configure router "Base" isis 0 interface "system" ipv4-node-sid index 1
+    /configure router "Base" isis 0 interface "system" flex-algo 128 ipv4-node-sid index 11
+    /configure routing-options flexible-algorithm-definitions flex-algo "Flex-Algo-128" admin-state enable
+    /configure routing-options flexible-algorithm-definitions flex-algo "Flex-Algo-128" description "Flex-Algo for Delay Metric"
+    /configure routing-options flexible-algorithm-definitions flex-algo "Flex-Algo-128" metric-type delay
 ```
 
 </details>
@@ -1373,7 +1385,46 @@ configure {
 <summary>フラットコンフィグ</summary>
 
 ```bash
+    /configure policy-options community "customer10-export" { member "target:65000:10" }
+    /configure policy-options community "customer10-import" { member "target:65000:10" }
 
+    /configure policy-options prefix-list "gaming" { prefix 11.0.1.0/24 type exact }
+    /configure policy-options prefix-list "gaming" { prefix 11.0.2.0/24 type exact }
+    /configure policy-options prefix-list "internet" { prefix 10.0.1.0/24 type exact }
+    /configure policy-options prefix-list "internet" { prefix 10.0.2.0/24 type exact }
+
+    /configure policy-options policy-statement "customer10-import" entry 10 from prefix-list ["internet"]
+    /configure policy-options policy-statement "customer10-import" entry 10 from community name "customer10-import"
+    /configure policy-options policy-statement "customer10-import" entry 10 action action-type accept
+    /configure policy-options policy-statement "customer10-import" entry 20 from prefix-list ["gaming"]
+    /configure policy-options policy-statement "customer10-import" entry 20 from community name "customer10-import"
+    /configure policy-options policy-statement "customer10-import" entry 20 action action-type accept
+    /configure policy-options policy-statement "customer10-import" entry 20 action flex-algo 128
+    /configure policy-options policy-statement "customer10-import" default-action action-type accept
+
+    /configure service customer "10" description "L3-IP"
+    /configure service customer "10" customer-id 10
+    /configure service customer "10" contact "Nokia"
+    /configure service customer "10" phone "+81-000-0000-0000"
+
+    /configure service vprn "customer10" admin-state enable
+    /configure service vprn "customer10" service-id 10
+    /configure service vprn "customer10" customer "10"
+    /configure service vprn "customer10" bgp-evpn mpls 1 admin-state enable
+    /configure service vprn "customer10" bgp-evpn mpls 1 route-distinguisher "192.0.2.1:10"
+    /configure service vprn "customer10" bgp-evpn mpls 1 evi 10
+    /configure service vprn "customer10" bgp-evpn mpls 1 vrf-import policy ["customer10-import"]
+    /configure service vprn "customer10" bgp-evpn mpls 1 vrf-target import-community "target:65000:10"
+    /configure service vprn "customer10" bgp-evpn mpls 1 vrf-target export-community "target:65000:10"
+    /configure service vprn "customer10" bgp-evpn mpls 1 auto-bind-tunnel resolution filter
+    /configure service vprn "customer10" bgp-evpn mpls 1 auto-bind-tunnel allow-flex-algo-fallback true
+    /configure service vprn "customer10" bgp-evpn mpls 1 auto-bind-tunnel resolution-filter sr-isis true
+    /configure service vprn "customer10" interface "to_gamer" ipv4 primary address 11.0.1.1
+    /configure service vprn "customer10" interface "to_gamer" ipv4 primary prefix-length 24
+    /configure service vprn "customer10" interface "to_gamer" { sap 1/1/c1/1:11 }
+    /configure service vprn "customer10" interface "to_internet" ipv4 primary address 10.0.1.1
+    /configure service vprn "customer10" interface "to_internet" ipv4 primary prefix-length 24
+    /configure service vprn "customer10" interface "to_internet" { sap 1/1/c1/1:10 }
 ```
 
 </details>
@@ -1495,7 +1546,7 @@ Stopping traffic
 ```bash
 root@pod5-KVM:/home/clab/sros-hands-on# sudo /home/clab/pod1/traffic.sh start gamer
 Starting gamer traffic
-Connecting to host 20.0.2.10, port 5202
+Connecting to host 11.0.2.10, port 5202
 
 ```
 
@@ -1606,7 +1657,18 @@ configure {
 <summary>フラットコンフィグ</summary>
 
 ```bash
-
+    /configure service vpls "customer20" admin-state enable
+    /configure service vpls "customer20" service-id 20
+    /configure service vpls "customer20" customer "20"
+    /configure service vpls "customer20" bgp 1 route-distinguisher "192.0.2.1:20"
+    /configure service vpls "customer20" bgp 1 route-target export "target:65000:20"
+    /configure service vpls "customer20" bgp 1 route-target import "target:65000:20"
+    /configure service vpls "customer20" bgp-evpn evi 20
+    /configure service vpls "customer20" bgp-evpn routes mac-ip advertise true
+    /configure service vpls "customer20" bgp-evpn routes mac-ip unknown-mac true
+    /configure service vpls "customer20" bgp-evpn mpls 1 admin-state enable
+    /configure service vpls "customer20" bgp-evpn mpls 1 auto-bind-tunnel resolution any
+    /configure service vpls "customer20" sap 1/1/c1/1:20 { }
 ```
 
 </details>
@@ -1676,7 +1738,21 @@ configure {
 <summary>フラットコンフィグ</summary>
 
 ```bash
-
+    /configure service epipe "customer30" admin-state enable
+    /configure service epipe "customer30" service-id 30
+    /configure service epipe "customer30" customer "30"
+    /configure service epipe "customer30" service-mtu 9228
+    /configure service epipe "customer30" bgp 1 route-distinguisher "192.0.2.1:30"
+    /configure service epipe "customer30" bgp 1 route-target export "target:65000:30"
+    /configure service epipe "customer30" bgp 1 route-target import "target:65000:30"
+    /configure service epipe "customer30" sap 1/1/c1/1:30 admin-state enable
+    /configure service epipe "customer30" bgp-evpn evi 30
+    /configure service epipe "customer30" bgp-evpn local-attachment-circuit "r1-ce" eth-tag 30
+    /configure service epipe "customer30" bgp-evpn remote-attachment-circuit "r2-ce" eth-tag 30
+    /configure service epipe "customer30" bgp-evpn mpls 1 admin-state enable
+    /configure service epipe "customer30" bgp-evpn mpls 1 control-word true
+    /configure service epipe "customer30" bgp-evpn mpls 1 ecmp 4
+    /configure service epipe "customer30" bgp-evpn mpls 1 auto-bind-tunnel resolution any
 ```
 
 </details>
@@ -1695,15 +1771,19 @@ configure {
 <details>
 <summary>階層化コンフィグ</summary>
 
+R3 ターミナル
 ```bash
-(ex)[/]
-A:admin@r5# admin show configuration /configure router interface "to_R5"
-    if-attribute {
-        delay {
-            static 50000
+configure {
+    router "Base" {
+        interface "to_R5" {
+            if-attribute {
+                delay {
+                    static 50000
+                }
+            }
         }
     }
-
+}
 ```
 
 </details>
