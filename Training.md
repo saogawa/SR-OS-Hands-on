@@ -15,12 +15,13 @@
    - [物理ポート設定](#物理ポート設定)
    - [コア網側インターフェース設定](#コア網側インターフェース設定)
    - [コア網側ISIS設定](#コア網側ISIS設定)
-   - [コア網側 : コア網側ISIS-SR設定](#コア網側-コア網側ISIS-SR設定)
+   - [コア網側ISIS-SR設定](#コア網側ISIS-SR設定)
    - [コア網側iBGP設定](#コア網側iBGP設定)
-   - [CE網側設定 (EVPN L3VPN)](#CE網側設定-(EVPN-L3VPN))
+   - [CE網側設定_(EVPN_L3VPN)](#CE網側設定_(EVPN_L3VPN))
+   - [CE網側設定_(EVPN_L2VPN_ELAN)](#CE網側設定_(EVPN_L2VPN_ELAN))
+   - [CE網側設定_(EVPN_L2VPN_VPWS)](#CE網側設定_(EVPN_L2VPN_VPWS))
    - [疎通確認_internet_delayメトリック変更前](#疎通確認_internet_delayメトリック変更前)
    - [疎通確認_gamer_delayメトリック変更前](#疎通確認_gamer_delayメトリック変更前)
-   - [CE網側設定 (EVPN L2VPN ELAN)](#CE網側設定-(EVPN-L2VPN-ELAN))
    - [コア網側_R3-R5_delayメトリックの変更](#コア網側_R3-R5_delayメトリックの変更)
    - [疎通確認_internet_delayメトリック変更後](#疎通確認_internet_delayメトリック変更後)
    - [疎通確認_gamer_delayメトリック変更後](#疎通確認_gamer_delayメトリック変更後)
@@ -1394,7 +1395,7 @@ Flags: n = Number of times nexthop is repeated
 
 ```
 
-## コア網側 : コア網側ISIS-SR設定
+## コア網側ISIS-SR設定
 
 ### ・ 設定変更
 
@@ -1613,7 +1614,7 @@ Routes : 2
 
 ```
 
-## CE網側設定 (EVPN L3VPN)
+## CE網側設定_(EVPN L3VPN)
 
 ### ・ 設定変更
 
@@ -1826,6 +1827,166 @@ Flags: n = Number of times nexthop is repeated
 ===============================================================================
 
 ```
+## CE網側設定_(EVPN_L2VPN_ELAN)
+
+### ・ 設定変更
+
+<details>
+<summary>階層化コンフィグ</summary>
+
+```bash
+configure {
+    service {
+        customer "20" {
+            description "L2-ELAN"
+            customer-id 20
+            contact "Nokia"
+            phone "+81-000-0000-0000"
+        }
+        vpls "customer20" {
+            admin-state enable
+            service-id 20
+            customer "20"
+            bgp 1 {
+                route-distinguisher "192.0.2.1:20"
+                route-target {
+                    export "target:65000:20"
+                    import "target:65000:20"
+                }
+            }
+            bgp-evpn {
+                evi 20
+                routes {
+                    mac-ip {
+                        advertise true
+                        unknown-mac true
+                    }
+                }
+                mpls 1 {
+                    admin-state enable
+                    auto-bind-tunnel {
+                        resolution any
+                    }
+                }
+            }
+            sap 1/1/c1/1:20 {
+            }
+        }
+    }
+}
+```
+
+</details>
+
+<details>
+<summary>フラットコンフィグ</summary>
+
+```bash
+    /configure service vpls "customer20" admin-state enable
+    /configure service vpls "customer20" service-id 20
+    /configure service vpls "customer20" customer "20"
+    /configure service vpls "customer20" bgp 1 route-distinguisher "192.0.2.1:20"
+    /configure service vpls "customer20" bgp 1 route-target export "target:65000:20"
+    /configure service vpls "customer20" bgp 1 route-target import "target:65000:20"
+    /configure service vpls "customer20" bgp-evpn evi 20
+    /configure service vpls "customer20" bgp-evpn routes mac-ip advertise true
+    /configure service vpls "customer20" bgp-evpn routes mac-ip unknown-mac true
+    /configure service vpls "customer20" bgp-evpn mpls 1 admin-state enable
+    /configure service vpls "customer20" bgp-evpn mpls 1 auto-bind-tunnel resolution any
+    /configure service vpls "customer20" sap 1/1/c1/1:20 { }
+```
+
+</details>
+
+### ・ 確認コマンド
+
+```bash
+
+```
+
+## CE網側設定_(EVPN_L2VPN_VPWS)
+
+### ・ 設定変更
+
+<details>
+<summary>階層化コンフィグ</summary>
+
+```bash
+configure {
+    service {
+        customer "30" {
+            description "L2-VPWS"
+            customer-id 30
+            contact "Nokia"
+            phone "+81-000-0000-0000"
+        }
+        epipe "customer30" {
+            admin-state enable
+            service-id 30
+            customer "30"
+            service-mtu 9228
+            bgp 1 {
+                route-distinguisher "192.0.2.1:30"
+                route-target {
+                    export "target:65000:30"
+                    import "target:65000:30"
+                }
+            }
+            sap 1/1/c1/1:30 {
+                admin-state enable
+            }
+            bgp-evpn {
+                evi 30
+                local-attachment-circuit "r1-ce" {
+                    eth-tag 30
+                }
+                remote-attachment-circuit "r2-ce" {
+                    eth-tag 30
+                }
+                mpls 1 {
+                    admin-state enable
+                    control-word true
+                    ecmp 4
+                    auto-bind-tunnel {
+                        resolution any
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+</details>
+
+<details>
+<summary>フラットコンフィグ</summary>
+
+```bash
+    /configure service epipe "customer30" admin-state enable
+    /configure service epipe "customer30" service-id 30
+    /configure service epipe "customer30" customer "30"
+    /configure service epipe "customer30" service-mtu 9228
+    /configure service epipe "customer30" bgp 1 route-distinguisher "192.0.2.1:30"
+    /configure service epipe "customer30" bgp 1 route-target export "target:65000:30"
+    /configure service epipe "customer30" bgp 1 route-target import "target:65000:30"
+    /configure service epipe "customer30" sap 1/1/c1/1:30 admin-state enable
+    /configure service epipe "customer30" bgp-evpn evi 30
+    /configure service epipe "customer30" bgp-evpn local-attachment-circuit "r1-ce" eth-tag 30
+    /configure service epipe "customer30" bgp-evpn remote-attachment-circuit "r2-ce" eth-tag 30
+    /configure service epipe "customer30" bgp-evpn mpls 1 admin-state enable
+    /configure service epipe "customer30" bgp-evpn mpls 1 control-word true
+    /configure service epipe "customer30" bgp-evpn mpls 1 ecmp 4
+    /configure service epipe "customer30" bgp-evpn mpls 1 auto-bind-tunnel resolution any
+```
+
+</details>
+
+### ・ 確認コマンド
+
+```bash
+
+```
 
 ## 疎通確認_internet_delayメトリック変更前
 
@@ -1952,168 +2113,6 @@ root@pod5-KVM:/home/clab/sros-hands-on# sudo /home/clab/pod1/traffic.sh stop gam
 Stopping traffic
 
 ```
-
-## CE網側設定 (EVPN L2VPN ELAN)
-
-### ・ 設定変更
-
-<details>
-<summary>階層化コンフィグ</summary>
-
-```bash
-configure {
-    service {
-        customer "20" {
-            description "L2-ELAN"
-            customer-id 20
-            contact "Nokia"
-            phone "+81-000-0000-0000"
-        }
-        vpls "customer20" {
-            admin-state enable
-            service-id 20
-            customer "20"
-            bgp 1 {
-                route-distinguisher "192.0.2.1:20"
-                route-target {
-                    export "target:65000:20"
-                    import "target:65000:20"
-                }
-            }
-            bgp-evpn {
-                evi 20
-                routes {
-                    mac-ip {
-                        advertise true
-                        unknown-mac true
-                    }
-                }
-                mpls 1 {
-                    admin-state enable
-                    auto-bind-tunnel {
-                        resolution any
-                    }
-                }
-            }
-            sap 1/1/c1/1:20 {
-            }
-        }
-    }
-}
-```
-
-</details>
-
-<details>
-<summary>フラットコンフィグ</summary>
-
-```bash
-    /configure service vpls "customer20" admin-state enable
-    /configure service vpls "customer20" service-id 20
-    /configure service vpls "customer20" customer "20"
-    /configure service vpls "customer20" bgp 1 route-distinguisher "192.0.2.1:20"
-    /configure service vpls "customer20" bgp 1 route-target export "target:65000:20"
-    /configure service vpls "customer20" bgp 1 route-target import "target:65000:20"
-    /configure service vpls "customer20" bgp-evpn evi 20
-    /configure service vpls "customer20" bgp-evpn routes mac-ip advertise true
-    /configure service vpls "customer20" bgp-evpn routes mac-ip unknown-mac true
-    /configure service vpls "customer20" bgp-evpn mpls 1 admin-state enable
-    /configure service vpls "customer20" bgp-evpn mpls 1 auto-bind-tunnel resolution any
-    /configure service vpls "customer20" sap 1/1/c1/1:20 { }
-```
-
-</details>
-
-### ・ 確認コマンド
-
-```bash
-
-```
-
-## CE網側設定 (EVPN L2VPN VPWS)
-
-### ・ 設定変更
-
-<details>
-<summary>階層化コンフィグ</summary>
-
-```bash
-configure {
-    service {
-        customer "30" {
-            description "L2-VPWS"
-            customer-id 30
-            contact "Nokia"
-            phone "+81-000-0000-0000"
-        }
-        epipe "customer30" {
-            admin-state enable
-            service-id 30
-            customer "30"
-            service-mtu 9228
-            bgp 1 {
-                route-distinguisher "192.0.2.1:30"
-                route-target {
-                    export "target:65000:30"
-                    import "target:65000:30"
-                }
-            }
-            sap 1/1/c1/1:30 {
-                admin-state enable
-            }
-            bgp-evpn {
-                evi 30
-                local-attachment-circuit "r1-ce" {
-                    eth-tag 30
-                }
-                remote-attachment-circuit "r2-ce" {
-                    eth-tag 30
-                }
-                mpls 1 {
-                    admin-state enable
-                    control-word true
-                    ecmp 4
-                    auto-bind-tunnel {
-                        resolution any
-                    }
-                }
-            }
-        }
-    }
-}
-```
-
-</details>
-
-<details>
-<summary>フラットコンフィグ</summary>
-
-```bash
-    /configure service epipe "customer30" admin-state enable
-    /configure service epipe "customer30" service-id 30
-    /configure service epipe "customer30" customer "30"
-    /configure service epipe "customer30" service-mtu 9228
-    /configure service epipe "customer30" bgp 1 route-distinguisher "192.0.2.1:30"
-    /configure service epipe "customer30" bgp 1 route-target export "target:65000:30"
-    /configure service epipe "customer30" bgp 1 route-target import "target:65000:30"
-    /configure service epipe "customer30" sap 1/1/c1/1:30 admin-state enable
-    /configure service epipe "customer30" bgp-evpn evi 30
-    /configure service epipe "customer30" bgp-evpn local-attachment-circuit "r1-ce" eth-tag 30
-    /configure service epipe "customer30" bgp-evpn remote-attachment-circuit "r2-ce" eth-tag 30
-    /configure service epipe "customer30" bgp-evpn mpls 1 admin-state enable
-    /configure service epipe "customer30" bgp-evpn mpls 1 control-word true
-    /configure service epipe "customer30" bgp-evpn mpls 1 ecmp 4
-    /configure service epipe "customer30" bgp-evpn mpls 1 auto-bind-tunnel resolution any
-```
-
-</details>
-
-### ・ 確認コマンド
-
-```bash
-
-```
-
 
 ## コア網側_R3-R5_delayメトリックの変更
 
