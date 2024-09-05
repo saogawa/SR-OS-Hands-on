@@ -4,92 +4,353 @@
 
 1. [初期設定](#初期設定)
    - [ハードウェア](#ハードウェア)
-     - [設定変更](#設定変更-1)
-       - [階層化コンフィグ](#階層化コンフィグ)
-       - [フラットコンフィグ](#フラットコンフィグ)
-     - [確認コマンド](#確認コマンド)
    - [NTP](#NTP)
-     - [設定変更](#設定変更-2)
-       - [階層化コンフィグ](#階層化コンフィグ-1)
-       - [フラットコンフィグ](#フラットコンフィグ-1)
-     - [確認コマンド](#確認コマンド-1)
    - [SNMP Trap](#SNMP-Trap)
-     - [設定変更](#設定変更-3)
-       - [階層化コンフィグ](#階層化コンフィグ-2)
-       - [フラットコンフィグ](#フラットコンフィグ-2)
-     - [確認コマンド](#確認コマンド-2)
    - [Syslog](#Syslog)
-     - [設定変更](#設定変更-4)
-       - [階層化コンフィグ](#階層化コンフィグ-3)
-       - [フラットコンフィグ](#フラットコンフィグ-3)
-     - [確認コマンド](#確認コマンド-3)
    - [ユーザアカウント](#ユーザアカウント)
-     - [設定変更](#設定変更-5)
-       - [階層化コンフィグ](#階層化コンフィグ-4)
-       - [フラットコンフィグ](#フラットコンフィグ-4)
-     - [確認コマンド](#確認コマンド-4)
    - [ログインコントロール](#ログインコントロール)
-     - [設定変更](#設定変更-6)
-       - [階層化コンフィグ](#階層化コンフィグ-5)
-       - [フラットコンフィグ](#フラットコンフィグ-5)
-     - [確認コマンド](#確認コマンド-5)
    - [ターミナルロギング](#ターミナルロギング)
-     - [設定変更](#設定変更-7)
-       - [階層化コンフィグ](#階層化コンフィグ-6)
-       - [フラットコンフィグ](#フラットコンフィグ-6)
-     - [確認コマンド](#確認コマンド-6)
    - [systemループバック](#systemループバック)
-     - [設定変更](#設定変更-8)
-       - [階層化コンフィグ](#階層化コンフィグ-7)
-       - [フラットコンフィグ](#フラットコンフィグ-7)
-     - [確認コマンド](#確認コマンド-7)
 2. [応用編](#応用編)
    - [物理ポート設定](#物理ポート設定)
-     - [設定変更](#設定変更-9)
-       - [階層化コンフィグ](#階層化コンフィグ-8)
-       - [フラットコンフィグ](#フラットコンフィグ-8)
-     - [確認コマンド](#確認コマンド-8)
    - [コア網側インターフェース設定](#コア網側インターフェース設定)
-     - [設定変更](#設定変更-10)
-       - [階層化コンフィグ](#階層化コンフィグ-9)
-       - [フラットコンフィグ](#フラットコンフィグ-9)
-     - [確認コマンド](#確認コマンド-9)
    - [コア網側ISIS設定](#コア網側ISIS設定)
-     - [設定変更](#設定変更-11)
-       - [階層化コンフィグ](#階層化コンフィグ-10)
-       - [フラットコンフィグ](#フラットコンフィグ-10)
-     - [確認コマンド](#確認コマンド-10)
    - [コア網側 : コア網側ISIS-SR設定](#コア網側-コア網側ISIS-SR設定)
-     - [設定変更](#設定変更-12)
-       - [階層化コンフィグ](#階層化コンフィグ-11)
-       - [フラットコンフィグ](#フラットコンフィグ-11)
-     - [確認コマンド](#確認コマンド-11)
    - [コア網側iBGP設定](#コア網側iBGP設定)
-     - [設定変更](#設定変更-13)
-       - [階層化コンフィグ](#階層化コンフィグ-12)
-       - [フラットコンフィグ](#フラットコンフィグ-12)
-     - [確認コマンド](#確認コマンド-12)
    - [CE網側設定 (EVPN L3VPN)](#CE網側設定-(EVPN-L3VPN))
-     - [設定変更](#設定変更-14)
-       - [階層化コンフィグ](#階層化コンフィグ-13)
-       - [フラットコンフィグ](#フラットコンフィグ-13)
-     - [確認コマンド](#確認コマンド-13)
    - [疎通確認_internet_delayメトリック変更前](#疎通確認_internet_delayメトリック変更前)
-     - [確認コマンド](#確認コマンド-14)
    - [疎通確認_gamer_delayメトリック変更前](#疎通確認_gamer_delayメトリック変更前)
-     - [確認コマンド](#確認コマンド-15)
    - [CE網側設定 (EVPN L2VPN ELAN)](#CE網側設定-(EVPN-L2VPN-ELAN))
-     - [設定変更](#設定変更-15)
-       - [階層化コンフィグ](#階層化コンフィグ-14)
-       - [フラットコンフィグ](#フラットコンフィグ-14)
-     - [確認コマンド](#確認コマンド-16)
    - [コア網側_R3-R5_delayメトリックの変更](#コア網側_R3-R5_delayメトリックの変更)
-     - [設定変更](#設定変更-16)
-     - [確認コマンド](#確認コマンド-17)
    - [疎通確認_internet_delayメトリック変更後](#疎通確認_internet_delayメトリック変更後)
-     - [確認コマンド](#確認コマンド-18)
    - [疎通確認_gamer_delayメトリック変更後](#疎通確認_gamer_delayメトリック変更後)
-     - [確認コマンド](#確認コマンド-19)
+
+# clab-sr-r1 バックアップ設定
+
+<details>
+<summary>階層化コンフィグ</summary>
+
+```bash
+    /configure card 1 card-type i24-800g-qsfpdd-1
+    /configure card 1 level he2800g+
+    /configure card 1 mda 1 mda-type m24-800g-qsfpdd-1
+    /configure log filter "1001" named-entry "10" description "Collect only events of major severity or higher"
+    /configure log filter "1001" named-entry "10" action forward
+    /configure log filter "1001" named-entry "10" match severity gte major
+    /configure log log-id "10" source main true
+    /configure log log-id "10" source security true
+    /configure log log-id "10" source change true
+    /configure { log log-id "10" destination snmp }
+    /configure log log-id "20" source main true
+    /configure log log-id "20" source security true
+    /configure log log-id "20" source change true
+    /configure log log-id "20" destination syslog "1"
+    /configure log log-id "30" source main true
+    /configure log log-id "30" source security true
+    /configure log log-id "30" source change true
+    /configure { log log-id "30" destination cli }
+    /configure log log-id "99" description "Default System Log"
+    /configure log log-id "99" source main true
+    /configure log log-id "99" destination memory max-entries 500
+    /configure log log-id "100" description "Default Serious Errors Log"
+    /configure log log-id "100" filter "1001"
+    /configure log log-id "100" source main true
+    /configure log log-id "100" destination memory max-entries 500
+    /configure log snmp-trap-group "10" trap-target "snmptrapd" address 172.20.20.1
+    /configure log snmp-trap-group "10" trap-target "snmptrapd" port 162
+    /configure log snmp-trap-group "10" trap-target "snmptrapd" version snmpv2c
+    /configure log snmp-trap-group "10" trap-target "snmptrapd" notify-community "public"
+    /configure log syslog "1" address 172.20.20.1
+    /configure log syslog "1" port 514
+    /configure { policy-options community "customer1-export" member "target:65000:1" }
+    /configure { policy-options community "customer1-import" member "target:65000:1" }
+    /configure { policy-options community "customer10-export" member "target:65000:10" }
+    /configure { policy-options community "customer10-import" member "target:65000:10" }
+    /configure { policy-options prefix-list "gaming" prefix 11.0.1.0/24 type exact }
+    /configure { policy-options prefix-list "gaming" prefix 11.0.2.0/24 type exact }
+    /configure { policy-options prefix-list "internet" prefix 10.0.1.0/24 type exact }
+    /configure { policy-options prefix-list "internet" prefix 10.0.2.0/24 type exact }
+    /configure policy-options policy-statement "customer1-import" entry 10 from prefix-list ["internet"]
+    /configure policy-options policy-statement "customer1-import" entry 10 from community name "customer1-import"
+    /configure policy-options policy-statement "customer1-import" entry 10 action action-type accept
+    /configure policy-options policy-statement "customer1-import" entry 20 from prefix-list ["gaming"]
+    /configure policy-options policy-statement "customer1-import" entry 20 from community name "customer1-import"
+    /configure policy-options policy-statement "customer1-import" entry 20 action action-type accept
+    /configure policy-options policy-statement "customer1-import" entry 20 action flex-algo 128
+    /configure policy-options policy-statement "customer1-import" default-action action-type accept
+    /configure policy-options policy-statement "customer10-import" entry 10 from prefix-list ["internet"]
+    /configure policy-options policy-statement "customer10-import" entry 10 from community name "customer10-import"
+    /configure policy-options policy-statement "customer10-import" entry 10 action action-type accept
+    /configure policy-options policy-statement "customer10-import" entry 20 from prefix-list ["gaming"]
+    /configure policy-options policy-statement "customer10-import" entry 20 from community name "customer10-import"
+    /configure policy-options policy-statement "customer10-import" entry 20 action action-type accept
+    /configure policy-options policy-statement "customer10-import" entry 20 action flex-algo 128
+    /configure policy-options policy-statement "customer10-import" default-action action-type accept
+    /configure port 1/1/c1 admin-state enable
+    /configure port 1/1/c1 connector breakout c1-100g
+    /configure port 1/1/c1/1 admin-state enable
+    /configure port 1/1/c1/1 ethernet mode hybrid
+    /configure port 1/1/c1/1 ethernet mtu 9242
+    /configure port 1/1/c2 admin-state enable
+    /configure port 1/1/c2 connector breakout c1-100g
+    /configure port 1/1/c2/1 admin-state enable
+    /configure port 1/1/c2/1 ethernet mode hybrid
+    /configure port 1/1/c2/1 ethernet mtu 9800
+    /configure port 1/1/c3 admin-state enable
+    /configure port 1/1/c3 connector breakout c1-100g
+    /configure port 1/1/c3/1 admin-state enable
+    /configure port 1/1/c3/1 ethernet mode hybrid
+    /configure port 1/1/c3/1 ethernet mtu 9800
+    /configure router "Base" autonomous-system 65000
+    /configure router "Base" interface "system" ipv4 primary address 192.0.2.1
+    /configure router "Base" interface "system" ipv4 primary prefix-length 32
+    /configure router "Base" interface "system" ipv6 address 192:2::1 prefix-length 128
+    /configure router "Base" interface "to_R3" admin-state enable
+    /configure router "Base" interface "to_R3" port 1/1/c2/1:0
+    /configure router "Base" interface "to_R3" ipv4 primary address 192.168.13.0
+    /configure router "Base" interface "to_R3" ipv4 primary prefix-length 31
+    /configure router "Base" interface "to_R3" if-attribute delay static 10000
+    /configure router "Base" interface "to_R4" admin-state enable
+    /configure router "Base" interface "to_R4" port 1/1/c3/1:0
+    /configure router "Base" interface "to_R4" ipv4 primary address 192.168.14.0
+    /configure router "Base" interface "to_R4" ipv4 primary prefix-length 31
+    /configure router "Base" interface "to_R4" if-attribute delay static 10000
+    /configure router "Base" mpls-labels sr-labels start 100000
+    /configure router "Base" mpls-labels sr-labels end 100999
+    /configure router "Base" bgp admin-state enable
+    /configure router "Base" bgp group "iBGP" peer-as 65000
+    /configure router "Base" bgp group "iBGP" family vpn-ipv4 true
+    /configure router "Base" bgp group "iBGP" family evpn true
+    /configure router "Base" bgp neighbor "192.0.2.3" group "iBGP"
+    /configure router "Base" isis 0 admin-state enable
+    /configure router "Base" isis 0 advertise-router-capability as
+    /configure router "Base" isis 0 level-capability 2
+    /configure router "Base" isis 0 traffic-engineering false
+    /configure router "Base" isis 0 area-address [49.0001]
+    /configure router "Base" isis 0 flexible-algorithms admin-state enable
+    /configure router "Base" isis 0 flexible-algorithms flex-algo 128 participate true
+    /configure router "Base" isis 0 flexible-algorithms flex-algo 128 advertise "Flex-Algo-128"
+    /configure { router "Base" isis 0 traffic-engineering-options application-link-attributes }
+    /configure router "Base" isis 0 segment-routing admin-state enable
+    /configure router "Base" isis 0 segment-routing prefix-sid-range global
+    /configure router "Base" isis 0 interface "system" ipv4-node-sid index 1
+    /configure router "Base" isis 0 interface "system" flex-algo 128 ipv4-node-sid index 11
+    /configure router "Base" isis 0 interface "to_R3" interface-type point-to-point
+    /configure { router "Base" isis 0 interface "to_R3" level 1 }
+    /configure router "Base" isis 0 interface "to_R4" interface-type point-to-point
+    /configure { router "Base" isis 0 interface "to_R4" level 1 }
+    /configure router "Base" isis 0 level 2 wide-metrics-only true
+    /configure routing-options flexible-algorithm-definitions flex-algo "Flex-Algo-128" admin-state enable
+    /configure routing-options flexible-algorithm-definitions flex-algo "Flex-Algo-128" description "Flex-Algo for Delay Metric"
+    /configure routing-options flexible-algorithm-definitions flex-algo "Flex-Algo-128" metric-type delay
+    /configure service customer "1" customer-id 1
+    /configure service customer "10" description "L3-IP"
+    /configure service customer "10" customer-id 10
+    /configure service customer "10" contact "Nokia"
+    /configure service customer "10" phone "+81-000-0000-0000"
+    /configure service customer "20" description "L2-ELAN"
+    /configure service customer "20" customer-id 20
+    /configure service customer "20" contact "Nokia"
+    /configure service customer "20" phone "+81-000-0000-0000"
+    /configure service customer "30" description "L2-VPWS"
+    /configure service customer "30" customer-id 30
+    /configure service customer "30" contact "Nokia"
+    /configure service customer "30" phone "+81-000-0000-0000"
+    /configure service md-auto-id service-id-range start 1000
+    /configure service md-auto-id service-id-range end 10000
+    /configure service epipe "customer30" admin-state enable
+    /configure service epipe "customer30" service-id 30
+    /configure service epipe "customer30" customer "30"
+    /configure service epipe "customer30" service-mtu 9228
+    /configure service epipe "customer30" bgp 1 route-distinguisher "192.0.2.1:30"
+    /configure service epipe "customer30" bgp 1 route-target export "target:65000:30"
+    /configure service epipe "customer30" bgp 1 route-target import "target:65000:30"
+    /configure service epipe "customer30" sap 1/1/c1/1:30 admin-state enable
+    /configure service epipe "customer30" bgp-evpn evi 30
+    /configure service epipe "customer30" bgp-evpn local-attachment-circuit "r1-ce" eth-tag 30
+    /configure service epipe "customer30" bgp-evpn remote-attachment-circuit "r2-ce" eth-tag 30
+    /configure service epipe "customer30" bgp-evpn mpls 1 admin-state enable
+    /configure service epipe "customer30" bgp-evpn mpls 1 control-word true
+    /configure service epipe "customer30" bgp-evpn mpls 1 ecmp 4
+    /configure service epipe "customer30" bgp-evpn mpls 1 auto-bind-tunnel resolution any
+    /configure service vpls "customer20" admin-state enable
+    /configure service vpls "customer20" service-id 20
+    /configure service vpls "customer20" customer "20"
+    /configure service vpls "customer20" bgp 1 route-distinguisher "192.0.2.1:20"
+    /configure service vpls "customer20" bgp 1 route-target export "target:65000:20"
+    /configure service vpls "customer20" bgp 1 route-target import "target:65000:20"
+    /configure service vpls "customer20" bgp-evpn evi 20
+    /configure service vpls "customer20" bgp-evpn routes mac-ip advertise true
+    /configure service vpls "customer20" bgp-evpn routes mac-ip unknown-mac true
+    /configure service vpls "customer20" bgp-evpn mpls 1 admin-state enable
+    /configure service vpls "customer20" bgp-evpn mpls 1 auto-bind-tunnel resolution any
+    /configure { service vpls "customer20" sap 1/1/c1/1:20 }
+    /configure service vprn "customer1" admin-state enable
+    /configure service vprn "customer1" service-id 1
+    /configure service vprn "customer1" customer "1"
+    /configure service vprn "customer1" bgp-ipvpn mpls admin-state enable
+    /configure service vprn "customer1" bgp-ipvpn mpls route-distinguisher "1:1"
+    /configure service vprn "customer1" bgp-ipvpn mpls vrf-target community "target:65000:1"
+    /configure service vprn "customer1" bgp-ipvpn mpls vrf-import policy ["customer1-import"]
+    /configure service vprn "customer1" bgp-ipvpn mpls auto-bind-tunnel resolution filter
+    /configure service vprn "customer1" bgp-ipvpn mpls auto-bind-tunnel allow-flex-algo-fallback true
+    /configure service vprn "customer1" bgp-ipvpn mpls auto-bind-tunnel resolution-filter sr-isis true
+    /configure { service vprn "customer1" bgp }
+    /configure service vprn "customer10" admin-state enable
+    /configure service vprn "customer10" service-id 10
+    /configure service vprn "customer10" customer "10"
+    /configure service vprn "customer10" bgp-evpn mpls 1 admin-state enable
+    /configure service vprn "customer10" bgp-evpn mpls 1 route-distinguisher "192.0.2.1:10"
+    /configure service vprn "customer10" bgp-evpn mpls 1 evi 10
+    /configure service vprn "customer10" bgp-evpn mpls 1 vrf-import policy ["customer10-import"]
+    /configure service vprn "customer10" bgp-evpn mpls 1 vrf-target import-community "target:65000:10"
+    /configure service vprn "customer10" bgp-evpn mpls 1 vrf-target export-community "target:65000:10"
+    /configure service vprn "customer10" bgp-evpn mpls 1 auto-bind-tunnel resolution filter
+    /configure service vprn "customer10" bgp-evpn mpls 1 auto-bind-tunnel allow-flex-algo-fallback true
+    /configure service vprn "customer10" bgp-evpn mpls 1 auto-bind-tunnel resolution-filter sr-isis true
+    /configure service vprn "customer10" interface "to_gamer" ipv4 primary address 11.0.1.1
+    /configure service vprn "customer10" interface "to_gamer" ipv4 primary prefix-length 24
+    /configure { service vprn "customer10" interface "to_gamer" sap 1/1/c1/1:11 }
+    /configure service vprn "customer10" interface "to_internet" ipv4 primary address 10.0.1.1
+    /configure service vprn "customer10" interface "to_internet" ipv4 primary prefix-length 24
+    /configure { service vprn "customer10" interface "to_internet" sap 1/1/c1/1:10 }
+    /configure system name "r1"
+    /configure system grpc admin-state enable
+    /configure system grpc allow-unsecure-connection
+    /configure system grpc gnmi auto-config-save true
+    /configure system grpc rib-api admin-state enable
+    /configure system management-interface configuration-save configuration-backups 5
+    /configure system management-interface configuration-save incremental-saves false
+    /configure system management-interface netconf auto-config-save true
+    /configure system management-interface netconf listen admin-state enable
+    /configure system management-interface snmp packet-size 9216
+    /configure system management-interface snmp streaming admin-state enable
+    /configure system bluetooth advertising-timeout 30
+    /configure system login-control idle-timeout none
+    /configure system login-control ssh inbound-max-sessions 10
+    /configure system login-control telnet inbound-max-sessions 10
+    /configure system security telnet-server true
+    /configure system security ftp-server true
+    /configure system security aaa local-profiles profile "administrative" default-action permit-all
+    /configure system security aaa local-profiles profile "administrative" entry 10 match "configure system security"
+    /configure system security aaa local-profiles profile "administrative" entry 10 action permit
+    /configure system security aaa local-profiles profile "administrative" entry 20 match "show system security"
+    /configure system security aaa local-profiles profile "administrative" entry 20 action permit
+    /configure system security aaa local-profiles profile "administrative" entry 30 match "tools perform security"
+    /configure system security aaa local-profiles profile "administrative" entry 30 action permit
+    /configure system security aaa local-profiles profile "administrative" entry 40 match "tools dump security"
+    /configure system security aaa local-profiles profile "administrative" entry 40 action permit
+    /configure system security aaa local-profiles profile "administrative" entry 50 match "admin system security"
+    /configure system security aaa local-profiles profile "administrative" entry 50 action permit
+    /configure system security aaa local-profiles profile "administrative" entry 100 match "configure li"
+    /configure system security aaa local-profiles profile "administrative" entry 100 action deny
+    /configure system security aaa local-profiles profile "administrative" entry 110 match "show li"
+    /configure system security aaa local-profiles profile "administrative" entry 110 action deny
+    /configure system security aaa local-profiles profile "administrative" entry 111 match "clear li"
+    /configure system security aaa local-profiles profile "administrative" entry 111 action deny
+    /configure system security aaa local-profiles profile "administrative" entry 112 match "tools dump li"
+    /configure system security aaa local-profiles profile "administrative" entry 112 action deny
+    /configure system security aaa local-profiles profile "administrative" netconf base-op-authorization action true
+    /configure system security aaa local-profiles profile "administrative" netconf base-op-authorization cancel-commit true
+    /configure system security aaa local-profiles profile "administrative" netconf base-op-authorization close-session true
+    /configure system security aaa local-profiles profile "administrative" netconf base-op-authorization commit true
+    /configure system security aaa local-profiles profile "administrative" netconf base-op-authorization copy-config true
+    /configure system security aaa local-profiles profile "administrative" netconf base-op-authorization create-subscription true
+    /configure system security aaa local-profiles profile "administrative" netconf base-op-authorization delete-config true
+    /configure system security aaa local-profiles profile "administrative" netconf base-op-authorization discard-changes true
+    /configure system security aaa local-profiles profile "administrative" netconf base-op-authorization edit-config true
+    /configure system security aaa local-profiles profile "administrative" netconf base-op-authorization get true
+    /configure system security aaa local-profiles profile "administrative" netconf base-op-authorization get-config true
+    /configure system security aaa local-profiles profile "administrative" netconf base-op-authorization get-data true
+    /configure system security aaa local-profiles profile "administrative" netconf base-op-authorization get-schema true
+    /configure system security aaa local-profiles profile "administrative" netconf base-op-authorization kill-session true
+    /configure system security aaa local-profiles profile "administrative" netconf base-op-authorization lock true
+    /configure system security aaa local-profiles profile "administrative" netconf base-op-authorization validate true
+    /configure system security aaa local-profiles profile "default" entry 10 match "exec"
+    /configure system security aaa local-profiles profile "default" entry 10 action permit
+    /configure system security aaa local-profiles profile "default" entry 20 match "exit"
+    /configure system security aaa local-profiles profile "default" entry 20 action permit
+    /configure system security aaa local-profiles profile "default" entry 30 match "help"
+    /configure system security aaa local-profiles profile "default" entry 30 action permit
+    /configure system security aaa local-profiles profile "default" entry 40 match "logout"
+    /configure system security aaa local-profiles profile "default" entry 40 action permit
+    /configure system security aaa local-profiles profile "default" entry 50 match "password"
+    /configure system security aaa local-profiles profile "default" entry 50 action permit
+    /configure system security aaa local-profiles profile "default" entry 60 match "show config"
+    /configure system security aaa local-profiles profile "default" entry 60 action deny
+    /configure system security aaa local-profiles profile "default" entry 65 match "show li"
+    /configure system security aaa local-profiles profile "default" entry 65 action deny
+    /configure system security aaa local-profiles profile "default" entry 66 match "clear li"
+    /configure system security aaa local-profiles profile "default" entry 66 action deny
+    /configure system security aaa local-profiles profile "default" entry 67 match "tools dump li"
+    /configure system security aaa local-profiles profile "default" entry 67 action deny
+    /configure system security aaa local-profiles profile "default" entry 68 match "state li"
+    /configure system security aaa local-profiles profile "default" entry 68 action deny
+    /configure system security aaa local-profiles profile "default" entry 70 match "show"
+    /configure system security aaa local-profiles profile "default" entry 70 action permit
+    /configure system security aaa local-profiles profile "default" entry 75 match "state"
+    /configure system security aaa local-profiles profile "default" entry 75 action permit
+    /configure system security aaa local-profiles profile "default" entry 80 match "enable-admin"
+    /configure system security aaa local-profiles profile "default" entry 80 action permit
+    /configure system security aaa local-profiles profile "default" entry 90 match "enable"
+    /configure system security aaa local-profiles profile "default" entry 90 action permit
+    /configure system security aaa local-profiles profile "default" entry 100 match "configure li"
+    /configure system security aaa local-profiles profile "default" entry 100 action deny
+    /configure system security snmp community "76HzdddhlPpRo1Vql+ZB5spLqccgYQ== hash2" access-permissions r
+    /configure system security snmp community "76HzdddhlPpRo1Vql+ZB5spLqccgYQ== hash2" version v2c
+    /configure system security ssh server-cipher-list-v2 cipher 190 name aes256-ctr
+    /configure system security ssh server-cipher-list-v2 cipher 192 name aes192-ctr
+    /configure system security ssh server-cipher-list-v2 cipher 194 name aes128-ctr
+    /configure system security ssh server-cipher-list-v2 cipher 200 name aes128-cbc
+    /configure system security ssh server-cipher-list-v2 cipher 205 name 3des-cbc
+    /configure system security ssh server-cipher-list-v2 cipher 225 name aes192-cbc
+    /configure system security ssh server-cipher-list-v2 cipher 230 name aes256-cbc
+    /configure system security ssh client-cipher-list-v2 cipher 190 name aes256-ctr
+    /configure system security ssh client-cipher-list-v2 cipher 192 name aes192-ctr
+    /configure system security ssh client-cipher-list-v2 cipher 194 name aes128-ctr
+    /configure system security ssh client-cipher-list-v2 cipher 200 name aes128-cbc
+    /configure system security ssh client-cipher-list-v2 cipher 205 name 3des-cbc
+    /configure system security ssh client-cipher-list-v2 cipher 225 name aes192-cbc
+    /configure system security ssh client-cipher-list-v2 cipher 230 name aes256-cbc
+    /configure system security ssh server-mac-list-v2 mac 200 name hmac-sha2-512
+    /configure system security ssh server-mac-list-v2 mac 210 name hmac-sha2-256
+    /configure system security ssh server-mac-list-v2 mac 215 name hmac-sha1
+    /configure system security ssh server-mac-list-v2 mac 220 name hmac-sha1-96
+    /configure system security ssh server-mac-list-v2 mac 225 name hmac-md5
+    /configure system security ssh server-mac-list-v2 mac 240 name hmac-md5-96
+    /configure system security ssh client-mac-list-v2 mac 200 name hmac-sha2-512
+    /configure system security ssh client-mac-list-v2 mac 210 name hmac-sha2-256
+    /configure system security ssh client-mac-list-v2 mac 215 name hmac-sha1
+    /configure system security ssh client-mac-list-v2 mac 220 name hmac-sha1-96
+    /configure system security ssh client-mac-list-v2 mac 225 name hmac-md5
+    /configure system security ssh client-mac-list-v2 mac 240 name hmac-md5-96
+    /configure system security user-params local-user user "admin" password "$2y$10$TQrZlpBDra86.qoexZUzQeBXDY1FcdDhGWdD9lLxMuFyPVSm0OGy6"
+    /configure system security user-params local-user user "admin" restricted-to-home false
+    /configure system security user-params local-user user "admin" access console true
+    /configure system security user-params local-user user "admin" access ftp true
+    /configure system security user-params local-user user "admin" access netconf true
+    /configure system security user-params local-user user "admin" access grpc true
+    /configure system security user-params local-user user "admin" console member ["administrative"]
+    /configure system security user-params local-user user "admin2" password "$2y$10$Y2w976F.elVC92ttAuZMI.qVNPeXMqykrlczZaIStpY5Y6q/tcKou"
+    /configure system security user-params local-user user "admin2" restricted-to-home false
+    /configure system security user-params local-user user "admin2" access console true
+    /configure system security user-params local-user user "admin2" access ftp true
+    /configure system security user-params local-user user "admin2" access ssh-cli true
+    /configure system security user-params local-user user "admin2" console member ["administrative"]
+    /configure system security user-params local-user user "guest" password "$2y$10$giCgIdHFt1mUqhiUYP8Yg.dmogwuZms4w.Gad5A3.UXFwCWVhb5vW"
+    /configure system security user-params local-user user "guest" restricted-to-home false
+    /configure system security user-params local-user user "guest" access console true
+    /configure system security user-params local-user user "guest" access ftp true
+    /configure system security user-params local-user user "guest" access ssh-cli true
+    /configure system security user-params local-user user "guest" console member ["administrative"]
+    /configure system time zone non-standard name "jst"
+    /configure system time zone non-standard offset "09:00"
+    /configure system time ntp admin-state enable
+    /configure system time ntp peer 172.20.20.1 router-instance "management" version 4
+    /configure system time ntp peer 172.20.20.1 router-instance "management" prefer true
+```
+
+</details>
 
 # 1. 初期設定
 
