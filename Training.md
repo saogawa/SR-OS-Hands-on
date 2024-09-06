@@ -389,10 +389,12 @@
 
 ### ・ 確認コマンド
 
+```bash
 show card
 show card detail
 show mda
 show mda detail
+```
 
 ```bash
 (ex)[/]
