@@ -396,37 +396,6 @@ show mda
 show mda detail
 ```
 
-```bash
-(ex)[/]
-A:admin@r1# show card
-
-===============================================================================
-Card Summary
-===============================================================================
-Slot      Provisioned Type                         Admin Operational   Comments
-              Equipped Type (if different)         State State
--------------------------------------------------------------------------------
-1         i24-800g-qsfpdd-1:he2800g+               up    up
-A         cpm-1x                                   up    up/active
-===============================================================================
-
-```
-
-```bash
-(ex)[/]
-A:admin@r1# show mda
-
-===============================================================================
-MDA Summary
-===============================================================================
-Slot  Mda   Provisioned Type                            Admin     Operational
-                Equipped Type (if different)            State     State
--------------------------------------------------------------------------------
-1     1     m24-800g-qsfpdd-1                           up        up
-===============================================================================
-
-```
-
 ## NTP
 
 ### ・ 設定変更
@@ -474,26 +443,11 @@ configure {
 ### ・ 確認コマンド
 
 ```bash
-(ex)[/]
-A:admin@r3# show system ntp peers
-
-===============================================================================
-NTP Active Associations
-===============================================================================
-State                     Reference ID    St Type  A  Poll Reach     Offset(ms)
-    Router         Remote
--------------------------------------------------------------------------------
-chosen                    162.159.200.1   4  actpr -  64   ...YYYYY  11.627
-    management     172.20.20.1
-===============================================================================
-
-===============================================================================
-NTP Clients
-===============================================================================
-vRouter                                                    Time Last Request Rx
-    Address
--------------------------------------------------------------------------------
-===============================================================================
+show time
+show system ntp
+show system ntp detail
+show system ntp all
+show system ntp peers
 ```
 
 ## SNMP Trap
@@ -550,28 +504,9 @@ configure {
 ### ・ 確認コマンド
 
 ```bash
-(ex)[/]
-A:admin@r3# show log log-id
-
-==============================================================================
-Event Logs
-==============================================================================
-Name
-Log  Source   Filter Admin Oper       Logged     Dropped Dest       Dest Size
-Id            Id     State State                         Type       Id
-------------------------------------------------------------------------------
-10
- 10  M S C    N/A    up    up             13          10 trap-group 10    100
-20
- 20  M S C    N/A    up    up             20           0 syslog     1     N/A
-99
- 99  M        N/A    up    up             84           0 memory           500
-100
-100  M        1001   up    up             11          73 memory           500
-101
-101  M S C    N/A    up    up            309           0 netconf          500
-==============================================================================
-
+show log log-id
+show log log-id "10" detail
+show log log-collector
 ```
 
 ```bash
@@ -584,7 +519,6 @@ tcpdump: data link type LINUX_SLL2
 ```bash
 (ex)[/ ]
 A:admin@r1# tools perform log test-event
-
 ```
 
 ```bash
@@ -597,7 +531,6 @@ listening on any, link-type LINUX_SLL2 (Linux cooked v2), snapshot length 262144
 08:45:18.743666 br-2df8edd81fb1 In  IP 172.20.20.4.162 > 172.20.20.1.162:  V2Trap(348)  .1.3.6.1.2.1.1.3.0=1973302 .1.3.6.1.6.3.1.1.4.1.0=.1.3.6.1.4.1.6527.3.1.3.12.0.6 .1.3.6.1.2.1.1.1.0=54_69_4d_4f_53_2d_43_2d_32_34_2e_37_2e_52_31_20_63_70_6d_2f_78_38_36_5f_36_34_20_4e_6f_6b_69_61_20_37_37_35_30_20_53_52_20_43_6f_70_79_72_69_67_68_74_20_28_63_29_20_32_30_30_30_2d_32_30_32_34_20_4e_6f_6b_69_61_2e_0d_0a_41_6c_6c_20_72_69_67_68_74_73_20_72_65_73_65_72_76_65_64_2e_20_41_6c_6c_20_75_73_65_20_73_75_62_6a_65_63_74_20_74_6f_20_61_70_70_6c_69_63_61_62_6c_65_20_6c_69_63_65_6e_73_65_20_61_67_72_65_65_6d_65_6e_74_73_2e_0d_0a_42_75_69_6c_74_20_6f_6e_20_54_68_75_20_4a_75_6c_20_31_31_20_31_35_3a_30_35_3a_30_33_20_50_44_54_20_32_30_32_34_20_62_79_20_62_75_69_6c_64_65_72_20_69_6e_20_2f_62_75_69_6c_64_73_2f_32_34_37_42_2f_52_31_2f_70_61_6e_6f_73_2f_6d_61_69_6e_2f_73_72_6f_73_0d_0a .1.3.6.1.2.1.1.2.0=.1.3.6.1.4.1.6527.1.3.35 .1.3.6.1.4.1.6527.3.1.2.12.35.0=""
 08:45:18.743734 veth028e238 P   IP 172.20.20.4.514 > 172.20.20.1.514: SYSLOG local7.info, length: 435
 08:45:18.743734 br-2df8edd81fb1 In  IP 172.20.20.4.514 > 172.20.20.1.514: SYSLOG local7.info, length: 435
-
 ```
 
 ## Syslog
@@ -647,28 +580,9 @@ configure {
 ### ・ 確認コマンド
 
 ```bash
-(ex)[/]
-A:admin@r3# show log log-id
-
-==============================================================================
-Event Logs
-==============================================================================
-Name
-Log  Source   Filter Admin Oper       Logged     Dropped Dest       Dest Size
-Id            Id     State State                         Type       Id
-------------------------------------------------------------------------------
-10
- 10  M S C    N/A    up    up             13          10 trap-group 10    100
-20
- 20  M S C    N/A    up    up             20           0 syslog     1     N/A
-99
- 99  M        N/A    up    up             84           0 memory           500
-100
-100  M        1001   up    up             11          73 memory           500
-101
-101  M S C    N/A    up    up            309           0 netconf          500
-==============================================================================
-
+show log log-id
+show log log-id "20" detail
+show log log-collector
 ```
 
 ```bash
@@ -749,24 +663,8 @@ configure {
 ### ・ 確認コマンド
 
 ```bash
-[/]
-A:admin2@r1# show system security user
-
-===============================================================================
-Users
-===============================================================================
-User ID      New Access                           Password Login   Failed Local
-             Pwd Permissions                      Expires  Attempt Logins Conf
--------------------------------------------------------------------------------
-admin        n   bt cc fp gr -- nc sp -- sc tc    never    9       0      y
-guest        n   bt cc fp -- -- -- sp -- sc tc    never    2       0      y
--------------------------------------------------------------------------------
-Number of users : 2
-Permissions: (bt) Bluetooth, (cc) Console port CLI, (fp) FTP, (gr) gRPC,
-             (li) LI, (nc) NETCONF, (sp) SCP/SFTP, (sn) SNMP, (sc) SSH CLI,
-             (tc) Telnet CLI
-===============================================================================
-
+show system security user
+show system security user detail
 ```
 
 ```bash
@@ -825,84 +723,9 @@ configure {
 ### ・ 確認コマンド
 
 ```bash
-(ex)[/]
-A:admin@r1# show system security user
-
-===============================================================================
-Users
-===============================================================================
-User ID      New Access                           Password Login   Failed Local
-             Pwd Permissions                      Expires  Attempt Logins Conf
--------------------------------------------------------------------------------
-admin        n   bt cc fp gr -- nc sp -- sc tc    never    9       0      y
--------------------------------------------------------------------------------
-Number of users : 1
-Permissions: (bt) Bluetooth, (cc) Console port CLI, (fp) FTP, (gr) gRPC,
-             (li) LI, (nc) NETCONF, (sp) SCP/SFTP, (sn) SNMP, (sc) SSH CLI,
-             (tc) Telnet CLI
-===============================================================================
-
-```
-
-```bash
-(ex)[/]
-A:admin@r1# show system security management
-
-===============================================================================
-Server Global
-===============================================================================
-Telnet:
-Administrative State         : Enabled
-Operational State            : Up
-Telnet6:
-Administrative State         : Disabled
-Operational State            : Down
-FTP:
-Administrative State         : Enabled
-Operational State            : Up
-SSH:
-Administrative State         : Enabled
-Operational State            : Up
-NETCONF:
-Administrative State         : Enabled
-Operational State            : Down
-GRPC:
-Administrative State         : Enabled
-Operational State            : Up
-
-===============================================================================
-Server Router Instance [Base]
-===============================================================================
-Telnet:
-Access allowed               : Allowed
-Telnet6:
-Access allowed               : Allowed
-FTP:
-Access allowed               : Allowed
-SSH:
-Access allowed               : Allowed
-NETCONF:
-Access allowed               : Allowed
-GRPC:
-Access allowed               : Allowed
-
-===============================================================================
-Server Router Instance [management]
-===============================================================================
-Telnet:
-Access allowed               : Allowed
-Telnet6:
-Access allowed               : Allowed
-FTP:
-Access allowed               : Allowed
-SSH:
-Access allowed               : Allowed
-NETCONF:
-Access allowed               : Allowed
-GRPC:
-Access allowed               : Allowed
-===============================================================================
-
+show system security user
+show system security user detail
+show system security management
 ```
 
 ## ターミナルロギング
@@ -947,26 +770,9 @@ configure {
 ### ・ 確認コマンド
 
 ```bash
-(ex)[/configure log log-id "30" destination cli]
-A:admin@r1# show log log-id
-
-==============================================================================
-Event Logs
-==============================================================================
-Name
-Log  Source   Filter Admin Oper       Logged     Dropped Dest       Dest Size
-Id            Id     State State                         Type       Id
-------------------------------------------------------------------------------
-30
- 30  M S C    N/A    up    up              5           0 cli              100
-99
- 99  M        N/A    up    up            105           0 memory           500
-100
-100  M        1001   up    up             15          90 memory           500
-101
-101  M S C    N/A    up    up            318           0 netconf          500
-==============================================================================
-
+show log log-id
+show log log-id "30" detail
+show log log-collector
 ```
 
 ```bash
@@ -1041,24 +847,9 @@ configure {
 ### ・ 確認コマンド
 
 ```bash
-(ex)[/]
-A:admin@r1# show router "Base" interface
-
-===============================================================================
-Interface Table (Router: Base)
-===============================================================================
-Interface-Name                   Adm       Opr(v4/v6)  Mode    Port/SapId
-   IP-Address                                                  PfxState
--------------------------------------------------------------------------------
-system                           Up        Up/Up       Network system
-   192.0.2.1/32                                                n/a
-   192:2::1/128                                                PREFERRED
-
-<SNIP>
--------------------------------------------------------------------------------
-Interfaces : 3
-===============================================================================
-
+show router "Base" interface
+show router interface
+show router interface detail
 ```
 
 # 2. 応用編
@@ -1142,26 +933,12 @@ configure {
 ### ・ 確認コマンド
 
 ```bash
-[/]
-A:admin@r1# show port
-
-===============================================================================
-Ports on Slot 1
-===============================================================================
-Port          Admin Link Port    Cfg  Oper LAG/ Port Port Port   C/QS/S/XFP/
-Id            State      State   MTU  MTU  Bndl Mode Encp Type   MDIMDX
--------------------------------------------------------------------------------
-1/1/c1        Up         Link Up                          conn   100G-CWDM4 2*
-1/1/c1/1      Up    Yes  Up      9800 9800    - hybr dotq cgige
-1/1/c2        Up         Link Up                          conn   100G-CWDM4 2*
-1/1/c2/1      Up    Yes  Up      9800 9800    - hybr dotq cgige
-1/1/c3        Up         Link Up                          conn   100G-CWDM4 2*
-1/1/c3/1      Up    Yes  Up      9800 9800    - hybr dotq cgige
-
-```
-
-```bash
-
+show port
+show port detail
+show port 1/1/c1
+show port 1/1/c1 detail
+show port 1/1/c1/1
+show port 1/1/c1/1 detail
 ```
 
 ## コア網側インターフェース設定
@@ -1234,26 +1011,9 @@ configure {
 ### ・ 確認コマンド
 
 ```bash
-[/]
-A:admin@r1# show router "Base" interface
-
-===============================================================================
-Interface Table (Router: Base)
-===============================================================================
-Interface-Name                   Adm       Opr(v4/v6)  Mode    Port/SapId
-   IP-Address                                                  PfxState
--------------------------------------------------------------------------------
-system                           Up        Up/Up       Network system
-   192.0.2.1/32                                                n/a
-   192:2::1/128                                                PREFERRED
-to_R3                            Up        Up/Down     Network 1/1/c2/1:0
-   192.168.13.0/31                                             n/a
-to_R4                            Up        Up/Down     Network 1/1/c3/1:0
-   192.168.14.0/31                                             n/a
--------------------------------------------------------------------------------
-Interfaces : 3
-===============================================================================
-
+show router "Base" interface
+show router interface
+show router interface detail
 ```
 
 ```bash
@@ -1333,87 +1093,14 @@ configure {
 ### ・ 確認コマンド
 
 ```bash
-[/]
-A:admin@r1# show router "Base" isis interface
-
-===============================================================================
-Rtr Base ISIS Instance 0 Interfaces
-===============================================================================
-Interface                        Level CircID  Oper      L1/L2 Metric     Type
-                                               State
--------------------------------------------------------------------------------
-system                           L1L2  1       Up        0/0              p2p
-to_R3                            L1L2  2       Up        10/10            p2p
-to_R4                            L1L2  3       Up        10/10            p2p
--------------------------------------------------------------------------------
-Interfaces : 3
-===============================================================================
-
-```
-
-```bash
-[/]
-A:admin@r1# show router "Base" isis adjacency
-
-===============================================================================
-Rtr Base ISIS Instance 0 Adjacency
-===============================================================================
-System ID                Usage State Hold Interface                     MT-ID
--------------------------------------------------------------------------------
-r3                       L2    Up    19   to_R3                         0
-r4                       L2    Up    19   to_R4                         0
--------------------------------------------------------------------------------
-Adjacencies : 2
-===============================================================================
-
-```
-
-```bash
-(gl)[/]
-A:admin@r1# show router route-table
-
-===============================================================================
-Route Table (Router: Base)
-===============================================================================
-Dest Prefix[Flags]                            Type    Proto     Age        Pref
-      Next Hop[Interface Name]                                    Metric
--------------------------------------------------------------------------------
-192.0.2.1/32                                  Local   Local     00h01m09s  0
-       system                                                       0
-192.0.2.2/32                                  Remote  ISIS      00h00m26s  18
-       192.168.13.1                                                 30
-192.0.2.3/32                                  Remote  ISIS      00h00m26s  18
-       192.168.13.1                                                 10
-192.0.2.4/32                                  Remote  ISIS      00h00m26s  18
-       192.168.14.1                                                 10
-192.0.2.5/32                                  Remote  ISIS      00h00m26s  18
-       192.168.13.1                                                 20
-192.0.2.6/32                                  Remote  ISIS      00h00m26s  18
-       192.168.14.1                                                 20
-192.168.13.0/31                               Local   Local     00h00m44s  0
-       to_R3                                                        0
-192.168.14.0/31                               Local   Local     00h00m44s  0
-       to_R4                                                        0
-192.168.25.0/31                               Remote  ISIS      00h00m26s  18
-       192.168.13.1                                                 30
-192.168.26.0/31                               Remote  ISIS      00h00m26s  18
-       192.168.14.1                                                 30
-192.168.34.0/31                               Remote  ISIS      00h00m26s  18
-       192.168.13.1                                                 20
-192.168.35.0/31                               Remote  ISIS      00h00m26s  18
-       192.168.13.1                                                 20
-192.168.46.0/31                               Remote  ISIS      00h00m26s  18
-       192.168.14.1                                                 20
-192.168.56.0/31                               Remote  ISIS      00h00m26s  18
-       192.168.13.1                                                 30
--------------------------------------------------------------------------------
-No. of Routes: 14
-Flags: n = Number of times nexthop is repeated
-       B = BGP backup route available
-       L = LFA nexthop available
-       S = Sticky ECMP requested
-===============================================================================
-
+show router isis status
+show router isis interface
+show router isis adjacency
+show router isis database
+show router isis database detail
+show router isis statistics
+show router isis spf-log
+show router route-table
 ```
 
 ## コア網側ISIS-SR設定
@@ -1501,49 +1188,10 @@ configure {
 ### ・ 確認コマンド
 
 ```bash
-[/]
-A:admin@r1# show router "Base" isis flex-algo
-
-===============================================================================
-Rtr Base ISIS Instance 0 Flex-Algos
-===============================================================================
-Flex-Algo Level Advertising Participating Num       Selected FAD
-                                          FADs      Owner (System-Id)
--------------------------------------------------------------------------------
-128       L2    Yes         Yes           1         1920.0000.2001
--------------------------------------------------------------------------------
-FAD: Flexible Algorithm Definition
--------------------------------------------------------------------------------
-No. of Flex-Algos: 1 (1 unique)
-===============================================================================
-
-```
-
-```bash
-[/]
-A:admin@r1# show router "Base" isis sid-stats adj
-
-===============================================================================
-Rtr Base ISIS Instance 0 Sid Statistics
-===============================================================================
-Ingress Label     : 524284              Type              : adjacency
-Prefix            : 192.168.14.1/32
-Interface         : to_R4
-Ingress Oper State: disabled            Egress Oper State : disabled
-Ingress Octets    : 0                   Egress Octets     : 0
-Ingress Packets   : 0                   Egress Packets    : 0
-
-Ingress Label     : 524285              Type              : adjacency
-Prefix            : 192.168.13.1/32
-Interface         : to_R3
-Ingress Oper State: disabled            Egress Oper State : disabled
-Ingress Octets    : 0                   Egress Octets     : 0
-Ingress Packets   : 0                   Egress Packets    : 0
-
--------------------------------------------------------------------------------
-Sid count : 2
-===============================================================================
-
+show router isis sid-stats node
+show router isis sid-stats node
+show router isis sid-stats adj
+show router isis flex-algo
 ```
 
 ## コア網側iBGP設定
@@ -1599,54 +1247,10 @@ configure {
 ### ・ 確認コマンド
 
 ```bash
-[/]
-A:admin@r1# show router "Base" bgp neighbor
-
-===============================================================================
-BGP Neighbor
-===============================================================================
--------------------------------------------------------------------------------
-Peer                 : 192.0.2.3
-Description          : (Not Specified)
-Group                : iBGP
--------------------------------------------------------------------------------
-Peer AS              : 65000            Peer Port            : 179
-Peer Address         : 192.0.2.3
-Local AS             : 65000            Local Port           : 50869
-Local Address        : 192.0.2.1
-Peer Type            : Internal         Dynamic Peer         : No
-State                : Established      Last State           : Active
-
-```
-
-```bash
-*(ex)[/]
-A:admin@r1# show router bgp neighbor 192.0.2.3 received-routes vpn-ipv4
-===============================================================================
- BGP Router ID:192.0.2.1        AS:65000       Local AS:65000
-===============================================================================
- Legend -
- Status codes  : u - used, s - suppressed, h - history, d - decayed, * - valid
-                 l - leaked, x - stale, > - best, b - backup, p - purge
- Origin codes  : i - IGP, e - EGP, ? - incomplete
-
-===============================================================================
-BGP VPN-IPv4 Routes
-===============================================================================
-Flag  Network                                            LocalPref   MED
-      Nexthop (Router)                                   Path-Id     IGP Cost
-      As-Path                                                        Label
--------------------------------------------------------------------------------
-u*>i  1:2:10.0.2.0/24                                    100         None
-      192.0.2.2                                          None        30
-      No As-Path                                                     524286
-u*>i  1:2:20.0.2.0/24                                    100         None
-      192.0.2.2                                          None        30
-      No As-Path                                                     524286
--------------------------------------------------------------------------------
-Routes : 2
-===============================================================================
-
+show router bgp summary
+show router bgp neighbor
+show router bgp neighbor 192.0.2.3 received-routes evpn
+show router bgp neighbor 192.0.2.3 advertised-routes evpn
 ```
 
 ## CE網側設定_カスタマー情報
@@ -1707,44 +1311,7 @@ configure {
 ### ・ 確認コマンド
 
 ```bash
-(ex)[/]
-A:admin@r1# show service customer
-
-===============================================================================
-Customers
-===============================================================================
-Customer-ID        : 1
-Customer Name      : 1
-Contact            : (Not Specified)
-Description        : Default customer
-Phone              : (Not Specified)
-Creation Origin    : manual
-
-Customer-ID        : 10
-Customer Name      : 10
-Contact            : Nokia
-Description        : L3-IP
-Phone              : +81-000-0000-0000
-Creation Origin    : manual
-
-Customer-ID        : 20
-Customer Name      : 20
-Contact            : Nokia
-Description        : L2-ELAN
-Phone              : +81-000-0000-0000
-Creation Origin    : manual
-
-Customer-ID        : 30
-Customer Name      : 30
-Contact            : Nokia
-Description        : L2-VPWS
-Phone              : +81-000-0000-0000
-Creation Origin    : manual
-
--------------------------------------------------------------------------------
-Total Customers : 4
--------------------------------------------------------------------------------
-===============================================================================
+show service customer
 ```
 
 ## CE網側設定_EVPN_L3VPN
@@ -1917,49 +1484,43 @@ configure {
 ### ・ 確認コマンド
 
 ```bash
-*(ex)[/]
-A:admin@r1# show router 1 interface
-
-===============================================================================
-Interface Table (Service: 1)
-===============================================================================
-Interface-Name                   Adm       Opr(v4/v6)  Mode    Port/SapId
-   IP-Address                                                  PfxState
--------------------------------------------------------------------------------
-to_client1                       Up        Up/Down     VPRN    1/1/c1/1:10
-   10.0.1.1/24                                                 n/a
-to_gamer1                        Up        Up/Down     VPRN    1/1/c1/1:20
-   20.0.1.1/24                                                 n/a
--------------------------------------------------------------------------------
-Interfaces : 2
-===============================================================================
-
-*(ex)[/]
-A:admin@r1# show router 1 route-table
-
-===============================================================================
-Route Table (Service: 1)
-===============================================================================
-Dest Prefix[Flags]                            Type    Proto     Age        Pref
-      Next Hop[Interface Name]                                    Metric
--------------------------------------------------------------------------------
-10.0.1.0/24                                   Local   Local     04h56m45s  0
-       to_client1                                                   0
-10.0.2.0/24                                   Remote  BGP VPN   04h55m26s  170
-       192.0.2.2 (tunneled:SR-ISIS:524299)                          30
-20.0.1.0/24                                   Local   Local     04h56m45s  0
-       to_gamer1                                                    0
-20.0.2.0/24                                   Remote  BGP VPN   04h55m26s  170
-       192.0.2.2 (tunneled:SR-ISIS:524296)                          30000
--------------------------------------------------------------------------------
-No. of Routes: 4
-Flags: n = Number of times nexthop is repeated
-       B = BGP backup route available
-       L = LFA nexthop available
-       S = Sticky ECMP requested
-===============================================================================
-
+show router 10 interface
+show router 10 route-table
+show router bgp neighbor 192.0.2.3 received-routes evpn ip-prefix
 ```
+
+```bash
+root@pod4-VM:~# docker exec -it clab-sr-host1 ping -c 3 10.0.2.10
+PING 10.0.2.10 (10.0.2.10) 56(84) bytes of data.
+64 bytes from 10.0.2.10: icmp_seq=1 ttl=62 time=14.6 ms
+64 bytes from 10.0.2.10: icmp_seq=2 ttl=62 time=15.3 ms
+64 bytes from 10.0.2.10: icmp_seq=3 ttl=62 time=12.9 ms
+```
+
+```bash
+root@pod4-VM:~# docker exec -it clab-sr-host1 ping -c 3 11.0.2.10
+PING 11.0.2.10 (11.0.2.10) 56(84) bytes of data.
+64 bytes from 11.0.2.10: icmp_seq=1 ttl=62 time=165 ms
+64 bytes from 11.0.2.10: icmp_seq=2 ttl=62 time=216 ms
+64 bytes from 11.0.2.10: icmp_seq=3 ttl=62 time=258 ms
+```
+
+```bash
+root@pod4-VM:~# docker exec -it clab-sr-host1 traceroute 10.0.2.10
+traceroute to 10.0.2.10 (10.0.2.10), 30 hops max, 46 byte packets
+ 1  10.0.1.1 (10.0.1.1)  177.461 ms  4.123 ms  4.496 ms
+ 2  10.0.2.1 (10.0.2.1)  17.409 ms  15.089 ms  12.812 ms
+ 3  10.0.2.10 (10.0.2.10)  11.940 ms  12.648 ms  13.295 ms
+```
+
+```bash
+root@pod4-VM:~# docker exec -it clab-sr-host1 traceroute 11.0.2.10
+traceroute to 11.0.2.10 (11.0.2.10), 30 hops max, 46 byte packets
+ 1  11.0.1.1 (11.0.1.1)  119.219 ms  3.620 ms  4.306 ms
+ 2  11.0.2.1 (11.0.2.1)  14.379 ms  14.743 ms  13.775 ms
+ 3  11.0.2.10 (11.0.2.10)  13.289 ms  12.567 ms  12.647 ms
+```
+
 ## CE網側設定_EVPN_L2VPN_ELAN
 
 ### ・ 設定変更
@@ -2034,8 +1595,47 @@ configure {
 ### ・ 確認コマンド
 
 ```bash
-
+show router bgp neighbor 192.0.2.3 received-routes evpn mac
+show router bgp neighbor 192.0.2.3 advertised-routes evpn mac
+show service id "customer20" all
+show service id "customer20" fdb
+show service id "customer20" fdb detail
 ```
+
+```bash
+root@pod4-VM:~# docker exec -it clab-sr-host1 ping -c 3 20.0.0.2
+PING 20.0.0.2 (20.0.0.2) 56(84) bytes of data.
+64 bytes from 20.0.0.2: icmp_seq=1 ttl=64 time=14.0 ms
+64 bytes from 20.0.0.2: icmp_seq=2 ttl=64 time=13.8 ms
+64 bytes from 20.0.0.2: icmp_seq=3 ttl=64 time=14.8 ms
+```
+
+```bash
+root@pod4-VM:~# docker exec -it clab-sr-host1 ping -c 3 20.0.0.6
+PING 20.0.0.6 (20.0.0.6) 56(84) bytes of data.
+64 bytes from 20.0.0.6: icmp_seq=1 ttl=64 time=32.5 ms
+64 bytes from 20.0.0.6: icmp_seq=2 ttl=64 time=79.6 ms
+64 bytes from 20.0.0.6: icmp_seq=3 ttl=64 time=133 ms
+```
+
+```bash
+root@pod4-VM:~# docker exec -it clab-sr-host1 traceroute 20.0.0.2
+traceroute to 20.0.0.2 (20.0.0.2), 30 hops max, 46 byte packets
+ 1  20.0.0.2 (20.0.0.2)  323.570 ms  15.303 ms  14.068 ms
+```
+
+```bash
+root@pod4-VM:~# docker exec -it clab-sr-host1 traceroute 20.0.0.6
+traceroute to 20.0.0.6 (20.0.0.6), 30 hops max, 46 byte packets
+ 1  20.0.0.6 (20.0.0.6)  92.586 ms  9.591 ms  10.061 ms
+```
+
+```bash
+root@pod4-VM:~# docker exec -it clab-sr-host1 traceroute 20.0.0.6
+traceroute to 20.0.0.6 (20.0.0.6), 30 hops max, 46 byte packets
+ 1  20.0.0.6 (20.0.0.6)  92.586 ms  9.591 ms  10.061 ms
+```
+
 
 ## CE網側設定_EVPN_L2VPN_VPWS
 
@@ -2118,7 +1718,17 @@ configure {
 ### ・ 確認コマンド
 
 ```bash
+show router bgp neighbor 192.0.2.3 received-routes evpn auto-disc
+show router bgp neighbor 192.0.2.3 advertised-routes evpn auto-disc
+show service id "customer30" all
+```
 
+```bash
+root@pod4-VM:~# docker exec -it clab-sr-host1 ping -c 3 20.0.0.2
+PING 20.0.0.2 (20.0.0.2) 56(84) bytes of data.
+64 bytes from 20.0.0.2: icmp_seq=1 ttl=64 time=14.0 ms
+64 bytes from 20.0.0.2: icmp_seq=2 ttl=64 time=13.8 ms
+64 bytes from 20.0.0.2: icmp_seq=3 ttl=64 time=14.8 ms
 ```
 
 ## 疎通確認_internet_delayメトリック変更前
@@ -2129,7 +1739,6 @@ configure {
 root@pod5-KVM:/home/clab/sros-hands-on# sudo /home/clab/pod1/traffic.sh start internet
 Starting non-gamer traffic to internet
 Connecting to host 10.0.2.10, port 5201
-
 ```
 
 ```bash
