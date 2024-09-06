@@ -1724,11 +1724,11 @@ show service id "customer30" all
 ```
 
 ```bash
-root@pod4-VM:~# docker exec -it clab-sr-host1 ping -c 3 20.0.0.2
-PING 20.0.0.2 (20.0.0.2) 56(84) bytes of data.
-64 bytes from 20.0.0.2: icmp_seq=1 ttl=64 time=14.0 ms
-64 bytes from 20.0.0.2: icmp_seq=2 ttl=64 time=13.8 ms
-64 bytes from 20.0.0.2: icmp_seq=3 ttl=64 time=14.8 ms
+root@pod4-VM:~# docker exec -it clab-sr-host1 ping -c 3 30.0.0.2
+PING 30.0.0.2 (30.0.0.2) 56(84) bytes of data.
+64 bytes from 30.0.0.2: icmp_seq=1 ttl=64 time=87.4 ms
+64 bytes from 30.0.0.2: icmp_seq=2 ttl=64 time=135 ms
+64 bytes from 30.0.0.2: icmp_seq=3 ttl=64 time=191 ms
 ```
 
 ## 疎通確認_internet_delayメトリック変更前
