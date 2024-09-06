@@ -1249,6 +1249,21 @@ Interfaces : 3
 
 ```
 
+```bash
+(gl)[/configure log log-id "30"]
+A:admin@r1# ping 192.168.13.1 router-instance "Base"
+PING 192.168.13.1 56 data bytes
+64 bytes from 192.168.13.1: icmp_seq=1 ttl=64 time=7.69ms.
+64 bytes from 192.168.13.1: icmp_seq=2 ttl=64 time=7.14ms.
+64 bytes from 192.168.13.1: icmp_seq=3 ttl=64 time=7.36ms.
+64 bytes from 192.168.13.1: icmp_seq=4 ttl=64 time=6.87ms.
+64 bytes from 192.168.13.1: icmp_seq=5 ttl=64 time=6.72ms.
+
+---- 192.168.13.1 PING Statistics ----
+5 packets transmitted, 5 packets received, 0.00% packet loss
+round-trip min = 6.72ms, avg = 7.16ms, max = 7.69ms, stddev = 0.345ms
+```
+
 ## コア網側ISIS設定
 
 ### ・ 設定変更
@@ -1403,6 +1418,12 @@ Flags: n = Number of times nexthop is repeated
 
 ```bash
 configure {
+    mpls-labels {
+        sr-labels {
+            start 100000
+            end 100999
+        }
+    }
     router "Base" {
         isis 0 {
             flexible-algorithms {
