@@ -389,6 +389,11 @@
 
 ### ・ 確認コマンド
 
+show card
+show card detail
+show mda
+show mda detail
+
 ```bash
 (ex)[/]
 A:admin@r1# show card
