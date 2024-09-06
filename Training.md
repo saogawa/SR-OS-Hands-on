@@ -15,6 +15,7 @@
    - [コア網側ISIS設定](#コア網側ISIS設定)
    - [コア網側ISIS-SR設定](#コア網側ISIS-SR設定)
    - [コア網側iBGP設定](#コア網側iBGP設定)
+   - [CE網側設定_カスタマー情報](#CE網側設定_カスタマー情報)
    - [CE網側設定_EVPN_L3VPN](#CE網側設定_EVPN_L3VPN)
    - [CE網側設定_EVPN_L2VPN_ELAN](#CE網側設定_EVPN_L2VPN_ELAN)
    - [CE網側設定_EVPN_L2VPN_VPWS](#CE網側設定_EVPN_L2VPN_VPWS)
@@ -1610,6 +1611,104 @@ u*>i  1:2:20.0.2.0/24                                    100         None
 Routes : 2
 ===============================================================================
 
+```
+
+## CE網側設定_カスタマー情報
+
+### ・ 設定変更
+
+<details>
+<summary>階層化コンフィグ</summary>
+
+```bash
+configure {
+    service {
+        customer "1" {
+            customer-id 1
+        }
+        customer "10" {
+            description "L3-IP"
+            customer-id 10
+            contact "Nokia"
+            phone "+81-000-0000-0000"
+        }
+        customer "20" {
+            description "L2-ELAN"
+            customer-id 20
+            contact "Nokia"
+            phone "+81-000-0000-0000"
+        }
+        customer "30" {
+            description "L2-VPWS"
+            customer-id 30
+            contact "Nokia"
+            phone "+81-000-0000-0000"
+        }
+    }
+}
+```
+</details>
+
+<details>
+<summary>フラットコンフィグ</summary>
+
+```bash
+    /configure service customer "10" description "L3-IP"
+    /configure service customer "10" customer-id 10
+    /configure service customer "10" contact "Nokia"
+    /configure service customer "10" phone "+81-000-0000-0000"
+    /configure service customer "20" description "L2-ELAN"
+    /configure service customer "20" customer-id 20
+    /configure service customer "20" contact "Nokia"
+    /configure service customer "20" phone "+81-000-0000-0000"
+    /configure service customer "30" description "L2-VPWS"
+    /configure service customer "30" customer-id 30
+    /configure service customer "30" contact "Nokia"
+    /configure service customer "30" phone "+81-000-0000-0000"
+```
+</details>
+
+### ・ 確認コマンド
+
+```bash
+(ex)[/]
+A:admin@r1# show service customer
+
+===============================================================================
+Customers
+===============================================================================
+Customer-ID        : 1
+Customer Name      : 1
+Contact            : (Not Specified)
+Description        : Default customer
+Phone              : (Not Specified)
+Creation Origin    : manual
+
+Customer-ID        : 10
+Customer Name      : 10
+Contact            : Nokia
+Description        : L3-IP
+Phone              : +81-000-0000-0000
+Creation Origin    : manual
+
+Customer-ID        : 20
+Customer Name      : 20
+Contact            : Nokia
+Description        : L2-ELAN
+Phone              : +81-000-0000-0000
+Creation Origin    : manual
+
+Customer-ID        : 30
+Customer Name      : 30
+Contact            : Nokia
+Description        : L2-VPWS
+Phone              : +81-000-0000-0000
+Creation Origin    : manual
+
+-------------------------------------------------------------------------------
+Total Customers : 4
+-------------------------------------------------------------------------------
+===============================================================================
 ```
 
 ## CE網側設定_EVPN_L3VPN
