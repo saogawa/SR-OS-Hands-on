@@ -1552,6 +1552,11 @@ configure {
         autonomous-system 65000
         bgp {
             admin-state enable
+            rapid-withdrawal true
+            rapid-update {
+                vpn-ipv4 true
+                evpn true
+            }
             group "iBGP" {
                 peer-as 65000
                 family {
@@ -1574,6 +1579,9 @@ configure {
 
 ```bash
     /configure router "Base" bgp admin-state enable
+    /configure router "Base" bgp rapid-withdrawal true
+    /configure router "Base" bgp rapid-update vpn-ipv4 true
+    /configure router "Base" bgp rapid-update evpn true
     /configure router "Base" bgp group "iBGP" peer-as 65000
     /configure router "Base" bgp group "iBGP" family vpn-ipv4 true
     /configure router "Base" bgp neighbor "192.0.2.3" group "iBGP"
