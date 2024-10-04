@@ -21,5 +21,5 @@ pod-06	https://sshx.io/s/8SAISEF02i#ZXUyiwR0rKjZKP
 
 pod-07	https://sshx.io/s/y2mnMY7wfO#FNKnItt2YF8WFt
 
-pod-08	https://sshx.io/s/Cyvzwgp9fI#ipo0WklHaJ7zW6
+pod-08	https://sshx.io/s/YUXTX2ajUw#1kfHfH7iVeKzM4
 
