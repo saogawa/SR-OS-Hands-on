@@ -460,9 +460,9 @@
 <summary>R1/R2コンフィグ</summary>
 
 ```bash
-    /configure card 1 card-type i24-800g-qsfpdd-1
-    /configure card 1 level he2800g+
-    /configure card 1 mda 1 mda-type m24-800g-qsfpdd-1
+    /configure card 1 card-type iom-1
+    /configure card 1 level he
+    /configure card 1 mda 1 mda-type me12-100gb-qsfp28
 
 ```
 
