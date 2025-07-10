@@ -549,7 +549,7 @@ A:admin@r1# tools perform log test-event
 ```
 
 ```bash
-admin@DL360-G10-006:~$ sudo tcpdump -n -i any udp port 162 or udp port 514
+HOST-OS# sudo tcpdump -n -i any udp port 162 or udp port 514
 [sudo] password for admin:
 tcpdump: data link type LINUX_SLL2
 tcpdump: verbose output suppressed, use -v[v]... for full protocol decode
