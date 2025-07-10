@@ -890,6 +890,8 @@ round-trip min = 6.72ms, avg = 7.16ms, max = 7.69ms, stddev = 0.345ms
 <summary>R1コンフィグ</summary>
 
 ```bash
+    /configure router "Base" mpls-labels sr-labels start 100000
+    /configure router "Base" mpls-labels sr-labels end 100999
     /configure router "Base" ospf 0 admin-state enable
     /configure router "Base" ospf 0 router-id 192.168.2.1
     /configure router "Base" ospf 0 advertise-router-capability area
@@ -913,6 +915,8 @@ round-trip min = 6.72ms, avg = 7.16ms, max = 7.69ms, stddev = 0.345ms
 <summary>R2コンフィグ</summary>
 
 ```bash
+    /configure router "Base" mpls-labels sr-labels start 100000
+    /configure router "Base" mpls-labels sr-labels end 100999
     /configure router "Base" ospf 0 admin-state enable
     /configure router "Base" ospf 0 router-id 192.168.2.2
     /configure router "Base" ospf 0 advertise-router-capability area
