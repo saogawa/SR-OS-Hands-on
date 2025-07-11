@@ -17,7 +17,8 @@
    - [コア網側iBGP設定](#コア網側ibgp設定)
    - [CE網側設定_カスタマー情報](#ce網側設定_カスタマー情報)
    - [CE網側設定_EVPN_L2VPN_ELAN](#ce網側設定_evpn_l2vpn_elan)
-
+2. [初期化](#3-初期化)
+   - [初期化設定](#初期化設定)
 
 # clab-sr-r1 バックアップ設定
 
@@ -1158,3 +1159,34 @@ Bits                                                 408                      0
 Utilization (% of port capacity)                   ~0.00                   0.00
 
 ```
+
+# 3. 初期化
+
+## 初期化設定
+
+## <span style="color:blue">R1/R2共通</span>
+
+### ・ 設定変更
+
+<details>
+<summary>R1/R2コンフィグ</summary>
+
+```bash
+delete /configure card 1
+delete /configure system time
+delete /configure log snmp-trap-group 10
+delete /configure log log-id 10
+delete /configure log log-id 20
+delete /configure log syslog 1
+delete /configure log log-id 10
+delete /configure router "Base" interface "system"
+delete /configure port *
+delete /configure router "Base" interface *
+delete /configure router bgp
+delete /configure router ospf
+delete /configure service vpls "customer10"
+delete /configure service customer *
+delete /configure router mpls-labels
+```
+</details>
+
