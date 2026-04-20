@@ -8,16 +8,16 @@
 
 ### 目次
 
-1.  [システム基本設定](https://www.google.com/search?q=%231-%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E5%9F%BA%E6%9C%AC%E8%A8%AD%E5%AE%9A)
-2.  [ロギング・通知設定](https://www.google.com/search?q=%232-%E3%83%AD%E3%82%AE%E3%83%B3%E3%82%B0%E3%83%BB%E9%80%9A%E7%9F%A5%E8%A8%AD%E5%AE%9A)
-3.  [物理ポート・カード設定](https://www.google.com/search?q=%233-%E7%89%A9%E7%90%86%E3%83%9D%E3%83%BC%E3%83%88%E3%83%BB%E3%82%AB%E3%83%BC%E3%83%89%E8%A8%AD%E5%AE%9A)
-4.  [LLDP 設定](https://www.google.com/search?q=%234-lldp-%E8%A8%AD%E5%AE%9A)
-5.  [L3 ネットワーク設定 (Base Router)](https://www.google.com/search?q=%235-l3-%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF%E8%A8%AD%E5%AE%9A-base-router)
-6.  [BFD 設定](https://www.google.com/search?q=%236-bfd-%E8%A8%AD%E5%AE%9A)
-7.  [経路ポリシー設定](https://www.google.com/search?q=%237-%E7%B5%8C%E8%B7%AF%E3%83%9D%E3%83%AA%E3%82%B7%E3%83%BC%E8%A8%AD%E5%AE%9A)
-8.  [BGP 設定 (Global/Underlay/Overlay)](https://www.google.com/search?q=%238-bgp-%E8%A8%AD%E5%AE%9A-globalunderlayoverlay)
-9.  [L2VPN サービス設定 (VPLS)](https://www.google.com/search?q=%239-l2vpn-%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E8%A8%AD%E5%AE%9A-vpls)
-10. [最終疎通確認](https://www.google.com/search?q=%2310-%E6%9C%80%E7%B5%82%E7%96%8E%E9%80%9A%E7%A2%BA%E8%AA%8D)
+1.  システム基本設定
+2.  ロギング・通知設定
+3.  物理ポート・カード設定
+4.  LLDP 設定
+5.  L3 ネットワーク設定 (Base Router)
+6.  BFD 設定
+7.  経路ポリシー設定
+8.  BGP 設定 (Global/Underlay/Overlay)
+9.  L2VPN サービス設定 (VPLS)
+10. 最終疎通確認
 
 -----
 
