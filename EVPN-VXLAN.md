@@ -413,7 +413,7 @@ CE1 / # exit
 CE（Docker コンテナ）から、他の拠点への疎通確認を実施します。
 
 ```bash
-docker exec clab-pod01-CE1 ping 192.168.10.2
-docker exec clab-pod01-CE1 ping 192.168.10.10
-docker exec clab-pod01-CE1 ping 192.168.10.3
+docker exec -it clab-pod01-CE1 ping 192.168.10.2
+docker exec -it clab-pod01-CE1 ping 192.168.10.10
+docker exec -it clab-pod01-CE1 ping 192.168.10.3
 ```
