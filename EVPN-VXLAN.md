@@ -205,6 +205,16 @@ CE1 / # exit
 /configure port 1/1/c3/1 ethernet mode network
 /configure port 1/1/c3/1 ethernet encap-type null
 /configure port 1/1/c3/1 ethernet mtu 9200
+
+/configure port 1/1/c4 admin-state enable
+/configure port 1/1/c4 description "To CE10"
+/configure port 1/1/c4 connector breakout c1-400g
+
+/configure port 1/1/c4/1 admin-state enable
+/configure port 1/1/c4/1 description "To PE2"
+/configure port 1/1/c4/1 ethernet mode network
+/configure port 1/1/c4/1 ethernet encap-type null
+/configure port 1/1/c4/1 ethernet mtu 9200
 ```
 
 **確認コマンド:**
