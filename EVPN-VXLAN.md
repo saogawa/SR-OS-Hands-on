@@ -266,8 +266,8 @@ CE1 / # exit
 
   - `show router interface`
   - `show router interface detail`
-  - `ping router Base 2000:2:1::2`
-  - `ping router Base 2000:3:1::2`
+  - `ping 2000:2:1::2 router-instance "Base"`
+  - `ping 2000:3:1::2 router-instance "Base"`
 
 -----
 
@@ -352,6 +352,8 @@ CE1 / # exit
   - `show router bgp neighbor "1000::2" advertised-routes`
   - `show router bgp neighbor "1000::2" received-routes`
   - `show router bgp routes`
+  - `show router bfd session`
+  - `show router bfd session detail`
   - `show router route-table`
   - `show router route-table ipv6`
 
@@ -397,6 +399,7 @@ CE1 / # exit
 /configure service vpls "L2VPN" bgp-evpn vxlan 1 admin-state enable
 /configure service vpls "L2VPN" bgp-evpn vxlan 1 vxlan-instance 1
 /configure service vpls "L2VPN" sap 1/1/c1/1:10 admin-state enable
+/configure service vpls "L2VPN" sap 1/1/c4/1:100 admin-state enable
 ```
 
 **確認コマンド:**
